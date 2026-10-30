@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import AppLogo from "../../components/common/AppLogo";
 import Button from "../../components/common/Button";
+import InstallAppButton from "../../components/common/InstallAppButton";
 import LoadingScreen from "../../components/common/LoadingScreen";
 import BottomNavigation from "../../components/layout/BottomNavigation";
 import WordCard from "../../components/word/WordCard";
@@ -176,13 +177,7 @@ export default function Home() {
     <div className="mx-auto flex min-h-dvh w-full flex-col bg-white text-navy sm:my-6 sm:min-h-[min(52rem,calc(100dvh-3rem))] sm:overflow-hidden sm:rounded-[1.75rem] sm:border sm:border-border sm:shadow-xl">
       <header className="flex items-center justify-between px-6 pb-5 pt-6">
         <AppLogo />
-        {/* <Button
-          variant="icon"
-          className="h-10 w-10 rounded-full"
-          aria-label="Settings"
-        >
-          <Settings size={20} aria-hidden="true" />
-        </Button> */}
+        <InstallAppButton />
       </header>
 
       <section
