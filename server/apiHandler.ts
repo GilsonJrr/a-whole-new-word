@@ -1,4 +1,10 @@
-import type { IncomingMessage, ServerResponse } from "node:http";
+import type { IncomingMessage } from "node:http";
+
+interface ApiResponse {
+  statusCode: number;
+  setHeader(name: string, value: string): void;
+  end(data?: string): void;
+}
 
 const dictionaryApiUrl = "https://api.dictionaryapi.dev/api/v2/entries/en";
 const randomWordsApiUrl = "https://random-word-api.herokuapp.com/word";
@@ -7,22 +13,25 @@ const wordPattern = /^[a-z][a-z'-]{0,39}$/i;
 const randomWordPattern = /^[a-z][a-z'-]{1,39}$/i;
 
 function sendJson(
-  response: ServerResponse,
+  response: ApiResponse,
   statusCode: number,
   payload: Record<string, string>,
 ) {
-  response.writeHead(statusCode, {
-    "Content-Type": "application/json; charset=utf-8",
-    "Cache-Control": "no-store",
-  });
+  response.statusCode = statusCode;
+  response.setHeader("Content-Type", "application/json; charset=utf-8");
+  response.setHeader("Cache-Control", "no-store");
   response.end(JSON.stringify(payload));
 }
 
 export async function handleApiRequest(
   request: IncomingMessage,
-  response: ServerResponse,
+  response: ApiResponse,
+  requestUrlOverride?: string,
 ): Promise<void> {
-  const requestUrl = new URL(request.url ?? "/", "http://localhost");
+  const requestUrl = new URL(
+    requestUrlOverride ?? request.url ?? "/",
+    "http://localhost",
+  );
   const match = requestUrl.pathname.match(/^\/api\/dictionary\/([^/]+)$/);
   const isRandomWordsRequest = requestUrl.pathname === "/api/random-words";
   const isTranslationRequest = requestUrl.pathname === "/api/translate";
@@ -107,20 +116,20 @@ export async function handleApiRequest(
         return;
       }
 
-      response.writeHead(apiResponse.status, {
-        "Content-Type": "application/json; charset=utf-8",
-        "Cache-Control": "no-store",
-      });
+      response.statusCode = apiResponse.status;
+      response.setHeader("Content-Type", "application/json; charset=utf-8");
+      response.setHeader("Cache-Control", "no-store");
       response.end(JSON.stringify(validWords));
       return;
     }
 
-    response.writeHead(apiResponse.status, {
-      "Content-Type":
-        apiResponse.headers.get("content-type") ??
+    response.statusCode = apiResponse.status;
+    response.setHeader(
+      "Content-Type",
+      apiResponse.headers.get("content-type") ??
         "application/json; charset=utf-8",
-      "Cache-Control": "no-store",
-    });
+    );
+    response.setHeader("Cache-Control", "no-store");
     response.end(body);
   } catch (error) {
     console.error("[API proxy]", error);
