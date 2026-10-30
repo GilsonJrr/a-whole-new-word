@@ -1,0 +1,1902 @@
+[
+  {
+    "word": "the",
+    "phonetic": "/ðʌ/",
+    "type": "article",
+    "definition": {
+      "pt": "artigo definido; usado antes de um substantivo específico",
+      "en": "the definite article; used before a specific noun"
+    },
+    "examples": [
+      {
+        "en": "The dog is sleeping on the sofa.",
+        "pt": "O cachorro está dormindo no sofá."
+      },
+      {
+        "en": "I left the keys on the kitchen table.",
+        "pt": "Deixei as chaves sobre a mesa da cozinha."
+      }
+    ]
+  },
+  {
+    "word": "be",
+    "phonetic": "/biː/",
+    "type": "verb",
+    "definition": {
+      "pt": "ser ou estar; existir",
+      "en": "to exist or live"
+    },
+    "examples": [
+      {
+        "en": "She wants to be a doctor.",
+        "pt": "Ela quer ser médica."
+      },
+      {
+        "en": "They will be here soon.",
+        "pt": "Eles estarão aqui em breve."
+      }
+    ]
+  },
+  {
+    "word": "to",
+    "phonetic": "/tuː/",
+    "type": "preposition",
+    "definition": {
+      "pt": "em direção a; para",
+      "en": "expressing direction toward a location or person"
+    },
+    "examples": [
+      {
+        "en": "We are going to the park.",
+        "pt": "Nós estamos indo para o parque."
+      },
+      {
+        "en": "Send the email to Sarah.",
+        "pt": "Envie o e-mail para a Sarah."
+      }
+    ]
+  },
+  {
+    "word": "of",
+    "phonetic": "/ɒv/",
+    "type": "preposition",
+    "definition": {
+      "pt": "de; pertencente a",
+      "en": "expressing the relationship between a part and a whole"
+    },
+    "examples": [
+      {
+        "en": "The roof of the house is red.",
+        "pt": "O telhado da casa é vermelho."
+      },
+      {
+        "en": "A slice of pizza was left.",
+        "pt": "Restou uma fatia de pizza."
+      }
+    ]
+  },
+  {
+    "word": "and",
+    "phonetic": "/ænd/",
+    "type": "conjunction",
+    "definition": {
+      "pt": "e; usado para conectar palavras ou frases",
+      "en": "used to connect words of the same part of speech"
+    },
+    "examples": [
+      {
+        "en": "I bought apples and oranges.",
+        "pt": "Comprei maçãs e laranjas."
+      },
+      {
+        "en": "He turned around and walked away.",
+        "pt": "Ele se virou e foi embora."
+      }
+    ]
+  },
+  {
+    "word": "a",
+    "phonetic": "/ə/",
+    "type": "article",
+    "definition": {
+      "pt": "um, uma; artigo indefinido singular",
+      "en": "used when referring to someone or something for the first time"
+    },
+    "examples": [
+      {
+        "en": "There is a cat on the wall.",
+        "pt": "Há um gato no muro."
+      },
+      {
+        "en": "She ordered a cup of coffee.",
+        "pt": "Ela pediu uma xícara de café."
+      }
+    ]
+  },
+  {
+    "word": "in",
+    "phonetic": "/ɪn/",
+    "type": "preposition",
+    "definition": {
+      "pt": "em, dentro de",
+      "en": "expressing the situation of being enclosed or surrounded"
+    },
+    "examples": [
+      {
+        "en": "The milk is in the fridge.",
+        "pt": "O leite está na geladeira."
+      },
+      {
+        "en": "They live in London.",
+        "pt": "Eles moram em Londres."
+      }
+    ]
+  },
+  {
+    "word": "that",
+    "phonetic": "/ðæt/",
+    "type": "pronoun",
+    "definition": {
+      "pt": "aquele, aquela, aquilo; que",
+      "en": "used to identify a specific person or thing observed by the speaker"
+    },
+    "examples": [
+      {
+        "en": "Look at that beautiful car.",
+        "pt": "Olhe para aquele carro bonito."
+      },
+      {
+        "en": "I know that you are right.",
+        "pt": "Eu sei que você está certo."
+      }
+    ]
+  },
+  {
+    "word": "have",
+    "phonetic": "/hæv/",
+    "type": "verb",
+    "definition": {
+      "pt": "ter, possuir",
+      "en": "possess, own, or hold"
+    },
+    "examples": [
+      {
+        "en": "I have two sisters.",
+        "pt": "Eu tenho duas irmãs."
+      },
+      {
+        "en": "They have a big house near the lake.",
+        "pt": "Eles têm uma casa grande perto do lago."
+      }
+    ]
+  },
+  {
+    "word": "I",
+    "phonetic": "/aɪ/",
+    "type": "pronoun",
+    "definition": {
+      "pt": "eu",
+      "en": "used by a speaker to refer to himself or herself"
+    },
+    "examples": [
+      {
+        "en": "I am learning English.",
+        "pt": "Eu estou aprendendo inglês."
+      },
+      {
+        "en": "I love listening to music.",
+        "pt": "Eu amo ouvir música."
+      }
+    ]
+  },
+  {
+    "word": "it",
+    "phonetic": "/ɪt/",
+    "type": "pronoun",
+    "definition": {
+      "pt": "ele, ela (para coisas e animais); isto",
+      "en": "used to refer to a thing previously mentioned"
+    },
+    "examples": [
+      {
+        "en": "It is raining outside.",
+        "pt": "Está chovendo lá fora."
+      },
+      {
+        "en": "Where is my pen? It was here.",
+        "pt": "Onde está minha caneta? Ela estava aqui."
+      }
+    ]
+  },
+  {
+    "word": "for",
+    "phonetic": "/fɔːr/",
+    "type": "preposition",
+    "definition": {
+      "pt": "para, por",
+      "en": "affecting, with regard to, or in respect of"
+    },
+    "examples": [
+      {
+        "en": "This gift is for you.",
+        "pt": "Este presente é para você."
+      },
+      {
+        "en": "We waited for two hours.",
+        "pt": "Nós esperamos por duas horas."
+      }
+    ]
+  },
+  {
+    "word": "not",
+    "phonetic": "/nɒt/",
+    "type": "adverb",
+    "definition": {
+      "pt": "não",
+      "en": "used with an auxiliary verb to form the negative"
+    },
+    "examples": [
+      {
+        "en": "I am not hungry right now.",
+        "pt": "Eu não estou com fome agora."
+      },
+      {
+        "en": "It is not cold today.",
+        "pt": "Não está frio hoje."
+      }
+    ]
+  },
+  {
+    "word": "on",
+    "phonetic": "/ɒn/",
+    "type": "preposition",
+    "definition": {
+      "pt": "em, sobre, em cima de",
+      "en": "physically in contact with and supported by a surface"
+    },
+    "examples": [
+      {
+        "en": "The book is on the desk.",
+        "pt": "O livro está sobre a escrivaninha."
+      },
+      {
+        "en": "She has a ring on her finger.",
+        "pt": "Ela tem um anel no dedo."
+      }
+    ]
+  },
+  {
+    "word": "with",
+    "phonetic": "/wɪð/",
+    "type": "preposition",
+    "definition": {
+      "pt": "com",
+      "en": "accompanied by another person or thing"
+    },
+    "examples": [
+      {
+        "en": "He went to the cinema with his friends.",
+        "pt": "Ele foi ao cinema com seus amigos."
+      },
+      {
+        "en": "Eat this soup with a spoon.",
+        "pt": "Coma esta sopa com uma colher."
+      }
+    ]
+  },
+  {
+    "word": "he",
+    "phonetic": "/hiː/",
+    "type": "pronoun",
+    "definition": {
+      "pt": "ele",
+      "en": "used to refer to a man, boy, or male animal"
+    },
+    "examples": [
+      {
+        "en": "He works at a bank.",
+        "pt": "Ele trabalha em um banco."
+      },
+      {
+        "en": "Is he coming to the party?",
+        "pt": "Ele vem para a festa?"
+      }
+    ]
+  },
+  {
+    "word": "as",
+    "phonetic": "/æz/",
+    "type": "adverb",
+    "definition": {
+      "pt": "como, enquanto",
+      "en": "used to indicate the extent or degree of something"
+    },
+    "examples": [
+      {
+        "en": "She works as a teacher.",
+        "pt": "Ela trabalha como professora."
+      },
+      {
+        "en": "Do as I say.",
+        "pt": "Faça como eu digo."
+      }
+    ]
+  },
+  {
+    "word": "you",
+    "phonetic": "/juː/",
+    "type": "pronoun",
+    "definition": {
+      "pt": "você, vocês",
+      "en": "used to refer to the person or people being addressed"
+    },
+    "examples": [
+      {
+        "en": "You are very kind.",
+        "pt": "Você é muito gentil."
+      },
+      {
+        "en": "Did you enjoy the movie?",
+        "pt": "Vocês gostaram do filme?"
+      }
+    ]
+  },
+  {
+    "word": "do",
+    "phonetic": "/duː/",
+    "type": "verb",
+    "definition": {
+      "pt": "fazer, realizar",
+      "en": "perform an action or activity"
+    },
+    "examples": [
+      {
+        "en": "What do you want to do today?",
+        "pt": "O que você quer fazer hoje?"
+      },
+      {
+        "en": "Please do your homework.",
+        "pt": "Por favor, faça sua lição de casa."
+      }
+    ]
+  },
+  {
+    "word": "at",
+    "phonetic": "/æt/",
+    "type": "preposition",
+    "definition": {
+      "pt": "em, às (para horários ou locais)",
+      "en": "expressing location or arrival in a particular place or position"
+    },
+    "examples": [
+      {
+        "en": "The meeting starts at nine o'clock.",
+        "pt": "A reunião começa às nove horas."
+      },
+      {
+        "en": "We arrived at the station early.",
+        "pt": "Nós chegamos à estação cedo."
+      }
+    ]
+  },
+  {
+    "word": "this",
+    "phonetic": "/ðɪs/",
+    "type": "pronoun",
+    "definition": {
+      "pt": "este, esta, isto",
+      "en": "used to identify a specific person or thing close at hand"
+    },
+    "examples": [
+      {
+        "en": "This is my favorite song.",
+        "pt": "Esta é a minha música favorita."
+      },
+      {
+        "en": "Who wrote this letter?",
+        "pt": "Quem escreveu esta carta?"
+      }
+    ]
+  },
+  {
+    "word": "but",
+    "phonetic": "/bʌt/",
+    "type": "conjunction",
+    "definition": {
+      "pt": "mas, porém",
+      "en": "used to introduce a phrase or clause contrasting with what has already been mentioned"
+    },
+    "examples": [
+      {
+        "en": "I tried to call, but no one answered.",
+        "pt": "Eu tentei ligar, mas ninguém atendeu."
+      },
+      {
+        "en": "She is quiet, but very smart.",
+        "pt": "Ela é quieta, mas muito inteligente."
+      }
+    ]
+  },
+  {
+    "word": "his",
+    "phonetic": "/hɪz/",
+    "type": "pronoun",
+    "definition": {
+      "pt": "dele, seu, sua",
+      "en": "belonging to or associated with a male person"
+    },
+    "examples": [
+      {
+        "en": "His jacket is hanging behind the door.",
+        "pt": "A jaqueta dele está pendurada atrás da porta."
+      },
+      {
+        "en": "He loves his job.",
+        "pt": "Ele ama o seu trabalho."
+      }
+    ]
+  },
+  {
+    "word": "by",
+    "phonetic": "/baɪ/",
+    "type": "preposition",
+    "definition": {
+      "pt": "por, perto de, ao lado de",
+      "en": "identifying the agent performing an action or location near something"
+    },
+    "examples": [
+      {
+        "en": "The book was written by an famous author.",
+        "pt": "O livro foi escrito por um autor famoso."
+      },
+      {
+        "en": "Sit by the window.",
+        "pt": "Sente-se ao lado da janela."
+      }
+    ]
+  },
+  {
+    "word": "from",
+    "phonetic": "/frɒm/",
+    "type": "preposition",
+    "definition": {
+      "pt": "de (origem), a partir de",
+      "en": "indicating the point in space or time at which a journey or sequence starts"
+    },
+    "examples": [
+      {
+        "en": "I received a letter from Brazil.",
+        "pt": "Recebi uma carta do Brasil."
+      },
+      {
+        "en": "The shop is open from 9 AM.",
+        "pt": "A loja está aberta a partir das 9h."
+      }
+    ]
+  },
+  {
+    "word": "they",
+    "phonetic": "/ðeɪ/",
+    "type": "pronoun",
+    "definition": {
+      "pt": "eles, elas",
+      "en": "used to refer to two or more people or things previously mentioned"
+    },
+    "examples": [
+      {
+        "en": "They are playing football outside.",
+        "pt": "Eles estão jogando futebol lá fora."
+      },
+      {
+        "en": "They live in a beautiful neighborhood.",
+        "pt": "Elas moram em um bairro lindo."
+      }
+    ]
+  },
+  {
+    "word": "we",
+    "phonetic": "/wiː/",
+    "type": "pronoun",
+    "definition": {
+      "pt": "nós",
+      "en": "used by a speaker to refer to himself or herself and one or more other people"
+    },
+    "examples": [
+      {
+        "en": "We should plan a holiday together.",
+        "pt": "Nós deveríamos planejar umas férias juntos."
+      },
+      {
+        "en": "We understand the instructions.",
+        "pt": "Nós entendemos as instruções."
+      }
+    ]
+  },
+  {
+    "word": "say",
+    "phonetic": "/seɪ/",
+    "type": "verb",
+    "definition": {
+      "pt": "dizer, falar",
+      "en": "utter words so as to convey information or an opinion"
+    },
+    "examples": [
+      {
+        "en": "What did you say to him?",
+        "pt": "O que você disse a ele?"
+      },
+      {
+        "en": "Always say 'thank you'.",
+        "pt": "Sempre diga 'obrigado'."
+      }
+    ]
+  },
+  {
+    "word": "her",
+    "phonetic": "/hɜːr/",
+    "type": "pronoun",
+    "definition": {
+      "pt": "dela, seu, sua, a ela",
+      "en": "belonging to or associated with a female person"
+    },
+    "examples": [
+      {
+        "en": "Her car is parked outside.",
+        "pt": "O carro dela está estacionado lá fora."
+      },
+      {
+        "en": "I gave her the message.",
+        "pt": "Eu dei a mensagem a ela."
+      }
+    ]
+  },
+  {
+    "word": "she",
+    "phonetic": "/ʃiː/",
+    "type": "pronoun",
+    "definition": {
+      "pt": "ela",
+      "en": "used to refer to a woman, girl, or female animal"
+    },
+    "examples": [
+      {
+        "en": "She speaks three languages fluently.",
+        "pt": "Ela fala três idiomas fluentemente."
+      },
+      {
+        "en": "Is she your sister?",
+        "pt": "Ela é sua irmã?"
+      }
+    ]
+  },
+  {
+    "word": "or",
+    "phonetic": "/ɔːr/",
+    "type": "conjunction",
+    "definition": {
+      "pt": "ou",
+      "en": "used to link alternatives"
+    },
+    "examples": [
+      {
+        "en": "Would you like tea or coffee?",
+        "pt": "Você gostaria de chá ou café?"
+      },
+      {
+        "en": "Is it true or false?",
+        "pt": "É verdadeiro ou falso?"
+      }
+    ]
+  },
+  {
+    "word": "an",
+    "phonetic": "/ən/",
+    "type": "article",
+    "definition": {
+      "pt": "um, uma (usado antes de som de vogal)",
+      "en": "the form of the indefinite article used before words beginning with a vowel sound"
+    },
+    "examples": [
+      {
+        "en": "I ate an apple for breakfast.",
+        "pt": "Eu comi uma maçã no café da manhã."
+      },
+      {
+        "en": "He is an honest man.",
+        "pt": "Ele é um homem honesto."
+      }
+    ]
+  },
+  {
+    "word": "will",
+    "phonetic": "/wɪl/",
+    "type": "verb",
+    "definition": {
+      "pt": "ir (indicador de futuro)",
+      "en": "expressing future intent or necessity"
+    },
+    "examples": [
+      {
+        "en": "I will call you tomorrow morning.",
+        "pt": "Eu vou te ligar amanhã de manhã."
+      },
+      {
+        "en": "The weather will be better next week.",
+        "pt": "O tempo estará melhor na próxima semana."
+      }
+    ]
+  },
+  {
+    "word": "my",
+    "phonetic": "/maɪ/",
+    "type": "pronoun",
+    "definition": {
+      "pt": "meu, minha, meus, minhas",
+      "en": "belonging to or associated with the speaker"
+    },
+    "examples": [
+      {
+        "en": "My phone battery is low.",
+        "pt": "A bateria do meu celular está fraca."
+      },
+      {
+        "en": "These are my parents.",
+        "pt": "Estes são meus pais."
+      }
+    ]
+  },
+  {
+    "word": "one",
+    "phonetic": "/wʌn/",
+    "type": "noun",
+    "definition": {
+      "pt": "um, uma (número)",
+      "en": "the lowest cardinal number; half of two"
+    },
+    "examples": [
+      {
+        "en": "I have only one question left.",
+        "pt": "Eu só tenho uma pergunta restante."
+      },
+      {
+        "en": "One day we will travel there.",
+        "pt": "Um dia nós viajaremos para lá."
+      }
+    ]
+  },
+  {
+    "word": "all",
+    "phonetic": "/ɔːl/",
+    "type": "adjective",
+    "definition": {
+      "pt": "todo, toda, todos, todas",
+      "en": "the whole quantity or extent of a particular group or object"
+    },
+    "examples": [
+      {
+        "en": "All the students passed the test.",
+        "pt": "Todos os alunos passaram no teste."
+      },
+      {
+        "en": "She ate all the cake.",
+        "pt": "Ela comeu o bolo todo."
+      }
+    ]
+  },
+  {
+    "word": "would",
+    "phonetic": "/wʊd/",
+    "type": "verb",
+    "definition": {
+      "pt": "gostaria, iria (condicional)",
+      "en": "expressing the conditional present tense"
+    },
+    "examples": [
+      {
+        "en": "I would love to visit Japan.",
+        "pt": "Eu adoraria visitar o Japão."
+      },
+      {
+        "en": "Would you help me with this box?",
+        "pt": "Você me ajudaria com esta caixa?"
+      }
+    ]
+  },
+  {
+    "word": "there",
+    "phonetic": "/ðeə/",
+    "type": "adverb",
+    "definition": {
+      "pt": "lá, ali, lá",
+      "en": "in, at, or to that place or position"
+    },
+    "examples": [
+      {
+        "en": "Put the box over there.",
+        "pt": "Coloque a caixa ali."
+      },
+      {
+        "en": "There is a park near my house.",
+        "pt": "Há um parque perto da minha casa."
+      }
+    ]
+  },
+  {
+    "word": "their",
+    "phonetic": "/ðeə/",
+    "type": "pronoun",
+    "definition": {
+      "pt": "deles, delas, seus, suas",
+      "en": "belonging to or associated with the people or things previously mentioned"
+    },
+    "examples": [
+      {
+        "en": "Their house is very modern.",
+        "pt": "A casa deles é muito moderna."
+      },
+      {
+        "en": "Children were playing with their toys.",
+        "pt": "As crianças estavam brincando com seus brinquedos."
+      }
+    ]
+  },
+  {
+    "word": "what",
+    "phonetic": "/wɒt/",
+    "type": "pronoun",
+    "definition": {
+      "pt": "o que, qual",
+      "en": "asking for information specifying something"
+    },
+    "examples": [
+      {
+        "en": "What is your favorite color?",
+        "pt": "Qual é a sua cor favorita?"
+      },
+      {
+        "en": "What happened yesterday?",
+        "pt": "O que aconteceu ontem?"
+      }
+    ]
+  },
+  {
+    "word": "so",
+    "phonetic": "/səʊ/",
+    "type": "adverb",
+    "definition": {
+      "pt": "tão, portanto, então",
+      "en": "to such a great extent; therefore"
+    },
+    "examples": [
+      {
+        "en": "I am so happy to see you.",
+        "pt": "Estou tão feliz em te ver."
+      },
+      {
+        "en": "It started raining, so we stayed inside.",
+        "pt": "Começou a chover, então ficamos dentro de casa."
+      }
+    ]
+  },
+  {
+    "word": "up",
+    "phonetic": "/ʌp/",
+    "type": "preposition",
+    "definition": {
+      "pt": "para cima, alto",
+      "en": "towards a higher position or level"
+    },
+    "examples": [
+      {
+        "en": "Look up at the stars.",
+        "pt": "Olhe para cima para as estrelas."
+      },
+      {
+        "en": "He walked up the stairs quickly.",
+        "pt": "Ele subiu as escadas rapidamente."
+      }
+    ]
+  },
+  {
+    "word": "out",
+    "phonetic": "/aʊt/",
+    "type": "preposition",
+    "definition": {
+      "pt": "fora, para fora",
+      "en": "moving or pointing away from a place"
+    },
+    "examples": [
+      {
+        "en": "She stepped out of the car.",
+        "pt": "Ela saiu do carro."
+      },
+      {
+        "en": "The lights went out suddenly.",
+        "pt": "As luzes se apagaram de repente."
+      }
+    ]
+  },
+  {
+    "word": "if",
+    "phonetic": "/ɪf/",
+    "type": "conjunction",
+    "definition": {
+      "pt": "se (condição)",
+      "en": "introducing a conditional clause"
+    },
+    "examples": [
+      {
+        "en": "If it rains, we will cancel the trip.",
+        "pt": "Se chover, nos cancelaremos a viagem."
+      },
+      {
+        "en": "Let me know if you need help.",
+        "pt": "Avise-me se precisar de ajuda."
+      }
+    ]
+  },
+  {
+    "word": "about",
+    "phonetic": "/əˈbaʊt/",
+    "type": "preposition",
+    "definition": {
+      "pt": "sobre, a respeito de, cerca de",
+      "en": "on the subject of; approximately"
+    },
+    "examples": [
+      {
+        "en": "We talked about our travel plans.",
+        "pt": "Nós conversamos sobre nossos planos de viagem."
+      },
+      {
+        "en": "It takes about thirty minutes.",
+        "pt": "Leva cerca de trinta minutos."
+      }
+    ]
+  },
+  {
+    "word": "who",
+    "phonetic": "/huː/",
+    "type": "pronoun",
+    "definition": {
+      "pt": "quem, que",
+      "en": "what or which person or people"
+    },
+    "examples": [
+      {
+        "en": "Who is coming to the dinner?",
+        "pt": "Quem vem para o jantar?"
+      },
+      {
+        "en": "The woman who called was friendly.",
+        "pt": "A mulher que ligou era simpática."
+      }
+    ]
+  },
+  {
+    "word": "get",
+    "phonetic": "/ɡɛt/",
+    "type": "verb",
+    "definition": {
+      "pt": "obter, conseguir, ficar",
+      "en": "come into possession of; receive"
+    },
+    "examples": [
+      {
+        "en": "Where did you get that shirt?",
+        "pt": "Onde você conseguiu essa camisa?"
+      },
+      {
+        "en": "I get tired in the evening.",
+        "pt": "Eu fico cansado à noite."
+      }
+    ]
+  },
+  {
+    "word": "which",
+    "phonetic": "/wɪtʃ/",
+    "type": "pronoun",
+    "definition": {
+      "pt": "qual, o qual, que",
+      "en": "asking for information specifying one or more people or things"
+    },
+    "examples": [
+      {
+        "en": "Which option do you prefer?",
+        "pt": "Qual opção você prefere?"
+      },
+      {
+        "en": "This is the car which I bought.",
+        "pt": "Este é o carro que eu comprei."
+      }
+    ]
+  },
+  {
+    "word": "go",
+    "phonetic": "/ɡəʊ/",
+    "type": "verb",
+    "definition": {
+      "pt": "ir, mover-se",
+      "en": "move from one place to another"
+    },
+    "examples": [
+      {
+        "en": "I need to go home now.",
+        "pt": "Eu preciso ir para casa agora."
+      },
+      {
+        "en": "They go to the gym every morning.",
+        "pt": "Eles vão para a academia todas as manhãs."
+      }
+    ]
+  },
+  {
+    "word": "me",
+    "phonetic": "/miː/",
+    "type": "pronoun",
+    "definition": {
+      "pt": "mim, me",
+      "en": "used by a speaker to refer to himself or herself as the object of a verb or preposition"
+    },
+    "examples": [
+      {
+        "en": "He gave me a valuable advice.",
+        "pt": "Ele me deu um conselho valioso."
+      },
+      {
+        "en": "Come with me to the store.",
+        "pt": "Venha comigo à loja."
+      }
+    ]
+  },
+  {
+    "word": "when",
+    "phonetic": "/wen/",
+    "type": "adverb",
+    "definition": {
+      "pt": "quando; em que momento",
+      "en": "at what time or in what circumstance"
+    },
+    "examples": [
+      {
+        "en": "When does the concert start?",
+        "pt": "Quando começa o show?"
+      },
+      {
+        "en": "Call me when you arrive home.",
+        "pt": "Ligue-me quando chegar em casa."
+      }
+    ]
+  },
+  {
+    "word": "make",
+    "phonetic": "/meɪk/",
+    "type": "verb",
+    "definition": {
+      "pt": "fazer, criar, produzir",
+      "en": "form something by putting parts together or combining substances"
+    },
+    "examples": [
+      {
+        "en": "She likes to make her own clothes.",
+        "pt": "Ela gosta de fazer suas próprias roupas."
+      },
+      {
+        "en": "Can you make a cup of tea?",
+        "pt": "Você pode fazer uma xícara de chá?"
+      }
+    ]
+  },
+  {
+    "word": "can",
+    "phonetic": "/kæn/",
+    "type": "verb",
+    "definition": {
+      "pt": "poder, ser capaz de",
+      "en": "be able to; have the ability to"
+    },
+    "examples": [
+      {
+        "en": "He can speak three languages.",
+        "pt": "Ele sabe falar três idiomas."
+      },
+      {
+        "en": "Can you help me with this box?",
+        "pt": "Você pode me ajudar com esta caixa?"
+      }
+    ]
+  },
+  {
+    "word": "like",
+    "phonetic": "/laɪk/",
+    "type": "verb",
+    "definition": {
+      "pt": "gostar; como",
+      "en": "find agreeable, enjoyable, or satisfactory"
+    },
+    "examples": [
+      {
+        "en": "I like reading historical novels.",
+        "pt": "Eu gosto de ler romances históricos."
+      },
+      {
+        "en": "She acts like a leader.",
+        "pt": "Ela me age como uma líder."
+      }
+    ]
+  },
+  {
+    "word": "time",
+    "phonetic": "/taɪm/",
+    "type": "noun",
+    "definition": {
+      "pt": "tempo, hora, vez",
+      "en": "the indefinite continued progress of existence and events"
+    },
+    "examples": [
+      {
+        "en": "What time is the meeting?",
+        "pt": "A que horas é a reunião?"
+      },
+      {
+        "en": "We had a great time at the party.",
+        "pt": "Nós nos divertimos muito na festa."
+      }
+    ]
+  },
+  {
+    "word": "no",
+    "phonetic": "/nəʊ/",
+    "type": "adverb",
+    "definition": {
+      "pt": "não; nenhum",
+      "en": "used to give a negative response"
+    },
+    "examples": [
+      {
+        "en": "No, I haven't seen that movie yet.",
+        "pt": "Não, eu ainda não vi esse filme."
+      },
+      {
+        "en": "There is no sugar left.",
+        "pt": "Não sobrou nenhum açúcar."
+      }
+    ]
+  },
+  {
+    "word": "just",
+    "phonetic": "/dʒʌst/",
+    "type": "adverb",
+    "definition": {
+      "pt": "apenas, só, há pouco",
+      "en": "exactly; simple; only a short time ago"
+    },
+    "examples": [
+      {
+        "en": "I just arrived at the station.",
+        "pt": "Eu acabei de chegar à estação."
+      },
+      {
+        "en": "It is just a misunderstanding.",
+        "pt": "É apenas um mal-entendido."
+      }
+    ]
+  },
+  {
+    "word": "him",
+    "phonetic": "/hɪm/",
+    "type": "pronoun",
+    "definition": {
+      "pt": "ele, o, lhe (objeto)",
+      "en": "used as the object of a verb or preposition to refer to a male person"
+    },
+    "examples": [
+      {
+        "en": "I saw him at the library yesterday.",
+        "pt": "Eu o vi na biblioteca ontem."
+      },
+      {
+        "en": "Give the package to him.",
+        "pt": "Entregue o pacote a ele."
+      }
+    ]
+  },
+  {
+    "word": "know",
+    "phonetic": "/nəʊ/",
+    "type": "verb",
+    "definition": {
+      "pt": "saber, conhecer",
+      "en": "be aware of through observation, inquiry, or information"
+    },
+    "examples": [
+      {
+        "en": "Do you know the answer to this question?",
+        "pt": "Você sabe a resposta para esta pergunta?"
+      },
+      {
+        "en": "I have known her for ten years.",
+        "pt": "Eu a conheço há dez anos."
+      }
+    ]
+  },
+  {
+    "word": "take",
+    "phonetic": "/teɪk/",
+    "type": "verb",
+    "definition": {
+      "pt": "pegar, levar, tomar",
+      "en": "reach for and hold; carry or transport"
+    },
+    "examples": [
+      {
+        "en": "Take an umbrella in case it rains.",
+        "pt": "Leve um guarda-chuva caso chova."
+      },
+      {
+        "en": "It will take about an hour.",
+        "pt": "Vai levar cerca de uma hora."
+      }
+    ]
+  },
+  {
+    "word": "people",
+    "phonetic": "/ˈpiːpl/",
+    "type": "noun",
+    "definition": {
+      "pt": "pessoas, povo",
+      "en": "human beings in general or considered collectively"
+    },
+    "examples": [
+      {
+        "en": "Many people attended the outdoor concert.",
+        "pt": "Muitas pessoas compareceram ao show ao ar livre."
+      },
+      {
+        "en": "The people of this city are very friendly.",
+        "pt": "O povo desta cidade é muito amigável."
+      }
+    ]
+  },
+  {
+    "word": "into",
+    "phonetic": "/ˈɪntuː/",
+    "type": "preposition",
+    "definition": {
+      "pt": "para dentro de, em",
+      "en": "expressing movement or action with the result that someone or something becomes enclosed"
+    },
+    "examples": [
+      {
+        "en": "She walked into the room silently.",
+        "pt": "Ela entrou no quarto silenciosamente."
+      },
+      {
+        "en": "Translate this text into Spanish.",
+        "pt": "Traduza este texto para o espanhol."
+      }
+    ]
+  },
+  {
+    "word": "year",
+    "phonetic": "/jɪər/",
+    "type": "noun",
+    "definition": {
+      "pt": "ano",
+      "en": "the period of 365 days or 366 days in leap years"
+    },
+    "examples": [
+      {
+        "en": "We moved to a new city last year.",
+        "pt": "Nós nos mudamos para uma cidade nova no ano passado."
+      },
+      {
+        "en": "Happy New Year!",
+        "pt": "Feliz Ano Novo!"
+      }
+    ]
+  },
+  {
+    "word": "your",
+    "phonetic": "/jɔːr/",
+    "type": "pronoun",
+    "definition": {
+      "pt": "seu, sua, seus, suas",
+      "en": "belonging to or associated with the person being addressed"
+    },
+    "examples": [
+      {
+        "en": "Is this your jacket?",
+        "pt": "Esta jaqueta é sua?"
+      },
+      {
+        "en": "Please write your name here.",
+        "pt": "Por favor, escreva seu nome aqui."
+      }
+    ]
+  },
+  {
+    "word": "good",
+    "phonetic": "/ɡʊd/",
+    "type": "adjective",
+    "definition": {
+      "pt": "bom, boa",
+      "en": "to be desired or approved of; high quality"
+    },
+    "examples": [
+      {
+        "en": "That is a good idea.",
+        "pt": "Essa é uma boa ideia."
+      },
+      {
+        "en": "He is a good musician.",
+        "pt": "Ele é um bom músico."
+      }
+    ]
+  },
+  {
+    "word": "some",
+    "phonetic": "/sʌm/",
+    "type": "adjective",
+    "definition": {
+      "pt": "algum, alguns, um pouco de",
+      "en": "an unspecified amount or number of"
+    },
+    "examples": [
+      {
+        "en": "Would you like some water?",
+        "pt": "Você gostaria de um pouco de água?"
+      },
+      {
+        "en": "Some friends are coming over tonight.",
+        "pt": "Alguns amigos virão aqui hoje à noite."
+      }
+    ]
+  },
+  {
+    "word": "could",
+    "phonetic": "/kʊd/",
+    "type": "verb",
+    "definition": {
+      "pt": "podia, poderia (passado/condicional de can)",
+      "en": "used to express possibility or past ability"
+    },
+    "examples": [
+      {
+        "en": "Could you open the window, please?",
+        "pt": "Você poderia abrir a janela, por favor?"
+      },
+      {
+        "en": "When I was young, I could run fast.",
+        "pt": "Quando eu era jovem, eu conseguia correr rápido."
+      }
+    ]
+  },
+  {
+    "word": "them",
+    "phonetic": "/ðəm/",
+    "type": "pronoun",
+    "definition": {
+      "pt": "eles, elas, os, as (objeto)",
+      "en": "used as the object of a verb or preposition to refer to two or more people or things"
+    },
+    "examples": [
+      {
+        "en": "I invited them to the meeting.",
+        "pt": "Eu os convidei para a reunião."
+      },
+      {
+        "en": "Show them the photos.",
+        "pt": "Mostre as fotos a eles."
+      }
+    ]
+  },
+  {
+    "word": "see",
+    "phonetic": "/siː/",
+    "type": "verb",
+    "definition": {
+      "pt": "ver, enxergar, entender",
+      "en": "perceive with the eyes; understand"
+    },
+    "examples": [
+      {
+        "en": "I can see the mountains from here.",
+        "pt": "Eu consigo ver as montanhas daqui."
+      },
+      {
+        "en": "Oh, I see what you mean.",
+        "pt": "Ah, eu entendo o que você quer dizer."
+      }
+    ]
+  },
+  {
+    "word": "other",
+    "phonetic": "/ˈʌðər/",
+    "type": "adjective",
+    "definition": {
+      "pt": "outro, outra",
+      "en": "used to refer to a person or thing that is different or distinct from one already mentioned"
+    },
+    "examples": [
+      {
+        "en": "Do you have any other questions?",
+        "pt": "Você tem mais alguma outra pergunta?"
+      },
+      {
+        "en": "On the other hand, the price is fair.",
+        "pt": "Por outro lado, o preço é justo."
+      }
+    ]
+  },
+  {
+    "word": "than",
+    "phonetic": "/ðæn/",
+    "type": "conjunction",
+    "definition": {
+      "pt": "do que (em comparações)",
+      "en": "used to introduce the second element in a comparison"
+    },
+    "examples": [
+      {
+        "en": "She is taller than her brother.",
+        "pt": "Ela é mais alta do que o irmão dela."
+      },
+      {
+        "en": "It was harder than I expected.",
+        "pt": "Foi mais difícil do que eu esperava."
+      }
+    ]
+  },
+  {
+    "word": "then",
+    "phonetic": "/ðen/",
+    "type": "adverb",
+    "definition": {
+      "pt": "então, depois, naquela época",
+      "en": "at that time; next; after that"
+    },
+    "examples": [
+      {
+        "en": "We had dinner and then went for a walk.",
+        "pt": "Nós jantamos e depois fomos caminhar."
+      },
+      {
+        "en": "If you are ready, then let's go.",
+        "pt": "Se você está pronto, então vamos."
+      }
+    ]
+  },
+  {
+    "word": "now",
+    "phonetic": "/naʊ/",
+    "type": "adverb",
+    "definition": {
+      "pt": "agora, neste momento",
+      "en": "at the present time or moment"
+    },
+    "examples": [
+      {
+        "en": "I need to leave right now.",
+        "pt": "Eu preciso sair agora mesmo."
+      },
+      {
+        "en": "Where are you living now?",
+        "pt": "Onde você está morando agora?"
+      }
+    ]
+  },
+  {
+    "word": "look",
+    "phonetic": "/lʊk/",
+    "type": "verb",
+    "definition": {
+      "pt": "olhar, parecer",
+      "en": "direct one's gaze toward someone or something; appear"
+    },
+    "examples": [
+      {
+        "en": "Look at that colorful bird!",
+        "pt": "Olhe para aquele pássaro colorido!"
+      },
+      {
+        "en": "You look very happy today.",
+        "pt": "Você parece muito feliz hoje."
+      }
+    ]
+  },
+  {
+    "word": "only",
+    "phonetic": "/ˈəʊnli/",
+    "type": "adverb",
+    "definition": {
+      "pt": "apenas, somente, único",
+      "en": "and no one or nothing more besides; sole"
+    },
+    "examples": [
+      {
+        "en": "I have only five dollars.",
+        "pt": "Eu tenho apenas cinco dólares."
+      },
+      {
+        "en": "He is the only person who can solve this.",
+        "pt": "Ele é a única pessoa que pode resolver isso."
+      }
+    ]
+  },
+  {
+    "word": "come",
+    "phonetic": "/kʌm/",
+    "type": "verb",
+    "definition": {
+      "pt": "vir, chegar",
+      "en": "move or travel toward or into a place thought of as near or familiar"
+    },
+    "examples": [
+      {
+        "en": "Come here and take a look at this.",
+        "pt": "Venha aqui e dê uma olhada nisto."
+      },
+      {
+        "en": "They will come to visit us next week.",
+        "pt": "Eles virão nos visitar na próxima semana."
+      }
+    ]
+  },
+  {
+    "word": "its",
+    "phonetic": "/ɪts/",
+    "type": "pronoun",
+    "definition": {
+      "pt": "dele, dela (possessivo para coisas/animais)",
+      "en": "belonging to or associated with a thing or animal"
+    },
+    "examples": [
+      {
+        "en": "The dog wagged its tail happily.",
+        "pt": "O cachorro abanou o rabo alegremente."
+      },
+      {
+        "en": "The company changed its policy.",
+        "pt": "A empresa mudou sua política."
+      }
+    ]
+  },
+  {
+    "word": "over",
+    "phonetic": "/ˈəʊvər/",
+    "type": "preposition",
+    "definition": {
+      "pt": "sobre, acima de, terminado",
+      "en": "extending directly upward from; finished"
+    },
+    "examples": [
+      {
+        "en": "The airplane flew over the clouds.",
+        "pt": "O avião voou sobre as nuvens."
+      },
+      {
+        "en": "The game is over.",
+        "pt": "O jogo terminou."
+      }
+    ]
+  },
+  {
+    "word": "think",
+    "phonetic": "/θɪŋk/",
+    "type": "verb",
+    "definition": {
+      "pt": "pensar, achar",
+      "en": "have a particular opinion, belief, or idea"
+    },
+    "examples": [
+      {
+        "en": "I think it is going to rain.",
+        "pt": "Eu acho que vai chover."
+      },
+      {
+        "en": "Take time to think before making a decision.",
+        "pt": "Reserve um tempo para pensar antes de tomar uma decisão."
+      }
+    ]
+  },
+  {
+    "word": "also",
+    "phonetic": "/ˈɔːlsəʊ/",
+    "type": "adverb",
+    "definition": {
+      "pt": "também",
+      "en": "in addition; too"
+    },
+    "examples": [
+      {
+        "en": "She plays the piano and also paints.",
+        "pt": "Ela toca piano e também pinta."
+      },
+      {
+        "en": "I am also interested in learning French.",
+        "pt": "Eu também estou interessado em aprender francês."
+      }
+    ]
+  },
+  {
+    "word": "back",
+    "phonetic": "/bæk/",
+    "type": "noun",
+    "definition": {
+      "pt": "costas; atrás; de volta",
+      "en": "the rear surface of the human body; return to a previous location"
+    },
+    "examples": [
+      {
+        "en": "He hurt his back playing tennis.",
+        "pt": "Ele machucou as costas jogando tênis."
+      },
+      {
+        "en": "When will you be back?",
+        "pt": "Quando você estará de volta?"
+      }
+    ]
+  },
+  {
+    "word": "after",
+    "phonetic": "/ˈɑːftər/",
+    "type": "preposition",
+    "definition": {
+      "pt": "depois de, após",
+      "en": "during the period of time following an event"
+    },
+    "examples": [
+      {
+        "en": "We went home after the movie ended.",
+        "pt": "Fomos para casa depois que o filme terminou."
+      },
+      {
+        "en": "After lunch, I took a short walk.",
+        "pt": "Após o almoço, fiz uma caminhada curta."
+      }
+    ]
+  },
+  {
+    "word": "use",
+    "phonetic": "/juːz/",
+    "type": "verb",
+    "definition": {
+      "pt": "usar, utilizar",
+      "en": "take, hold, or deploy something as a means of accomplishing a purpose"
+    },
+    "examples": [
+      {
+        "en": "Can I use your computer for a minute?",
+        "pt": "Posso usar seu computador por um minuto?"
+      },
+      {
+        "en": "He uses a public bus to go to work.",
+        "pt": "Ele usa ônibus público para ir ao trabalho."
+      }
+    ]
+  },
+  {
+    "word": "two",
+    "phonetic": "/tuː/",
+    "type": "noun",
+    "definition": {
+      "pt": "dois, duas (número)",
+      "en": "equivalent to the sum of one and one"
+    },
+    "examples": [
+      {
+        "en": "I have two tickets for the concert.",
+        "pt": "Tenho dois ingressos para o show."
+      },
+      {
+        "en": "They arrived two hours late.",
+        "pt": "Eles chegaram duas horas atrasados."
+      }
+    ]
+  },
+  {
+    "word": "how",
+    "phonetic": "/haʊ/",
+    "type": "adverb",
+    "definition": {
+      "pt": "como, de que maneira",
+      "en": "in what way or manner"
+    },
+    "examples": [
+      {
+        "en": "How do you solve this math problem?",
+        "pt": "Como você resolve este problema de matemática?"
+      },
+      {
+        "en": "How was your trip?",
+        "pt": "Como foi sua viagem?"
+      }
+    ]
+  },
+  {
+    "word": "our",
+    "phonetic": "/aʊər/",
+    "type": "pronoun",
+    "definition": {
+      "pt": "nosso, nossa, nossos, nossas",
+      "en": "belonging to or associated with the speaker and one or more other people"
+    },
+    "examples": [
+      {
+        "en": "Welcome to our house!",
+        "pt": "Bem-vindo à nossa casa!"
+      },
+      {
+        "en": "Our team won the championship.",
+        "pt": "Nosso time venceu o campeonato."
+      }
+    ]
+  },
+  {
+    "word": "work",
+    "phonetic": "/wɜːk/",
+    "type": "verb",
+    "definition": {
+      "pt": "trabalhar, funcionar",
+      "en": "activity involving mental or physical effort done in order to achieve a purpose"
+    },
+    "examples": [
+      {
+        "en": "She works as a software developer.",
+        "pt": "Ela trabalha como desenvolvedora de software."
+      },
+      {
+        "en": "My elevator is not working today.",
+        "pt": "Meu elevador não está funcionando hoje."
+      }
+    ]
+  },
+  {
+    "word": "first",
+    "phonetic": "/fɜːst/",
+    "type": "adjective",
+    "definition": {
+      "pt": "primeiro, primeira",
+      "en": "coming before all others in time, order, or importance"
+    },
+    "examples": [
+      {
+        "en": "This is my first time visiting Europe.",
+        "pt": "Esta é a minha primeira vez visitando a Europa."
+      },
+      {
+        "en": "He won first place in the race.",
+        "pt": "Ele ganhou em primeiro lugar na corrida."
+      }
+    ]
+  },
+  {
+    "word": "well",
+    "phonetic": "/wel/",
+    "type": "adverb",
+    "definition": {
+      "pt": "bem",
+      "en": "in a good or satisfactory way"
+    },
+    "examples": [
+      {
+        "en": "She speaks English very well.",
+        "pt": "Ela fala inglês muito bem."
+      },
+      {
+        "en": "I hope everything goes well.",
+        "pt": "Espero que tudo corra bem."
+      }
+    ]
+  },
+  {
+    "word": "way",
+    "phonetic": "/weɪ/",
+    "type": "noun",
+    "definition": {
+      "pt": "caminho, maneira, jeito",
+      "en": "a method, manner, or route"
+    },
+    "examples": [
+      {
+        "en": "Can you tell me the way to the station?",
+        "pt": "Você pode me dizer o caminho para a estação?"
+      },
+      {
+        "en": "I love the way she smiles.",
+        "pt": "Eu amo o jeito como ela sorri."
+      }
+    ]
+  },
+  {
+    "word": "even",
+    "phonetic": "/ˈiːvn/",
+    "type": "adverb",
+    "definition": {
+      "pt": "mesmo, até, par (número)",
+      "en": "used to emphasize something surprising or unexpected"
+    },
+    "examples": [
+      {
+        "en": "Even a child could understand this.",
+        "pt": "Até uma criança conseguiria entender isso."
+      },
+      {
+        "en": "She didn't even say goodbye.",
+        "pt": "Ela nem mesmo se despediu."
+      }
+    ]
+  },
+  {
+    "word": "new",
+    "phonetic": "/njuː/",
+    "type": "adjective",
+    "definition": {
+      "pt": "novo, nova",
+      "en": "not existing before; recently made, built, or created"
+    },
+    "examples": [
+      {
+        "en": "I bought a new phone yesterday.",
+        "pt": "Eu comprei um celular novo ontem."
+      },
+      {
+        "en": "Welcome to your new home!",
+        "pt": "Bem-vindo ao seu novo lar!"
+      }
+    ]
+  },
+  {
+    "word": "want",
+    "phonetic": "/wɒnt/",
+    "type": "verb",
+    "definition": {
+      "pt": "querer, desejar",
+      "en": "have a desire to possess or do something"
+    },
+    "examples": [
+      {
+        "en": "I want to travel around the world.",
+        "pt": "Eu quero viajar pelo mundo."
+      },
+      {
+        "en": "What do you want for lunch?",
+        "pt": "O que você quer para o almoço?"
+      }
+    ]
+  },
+  {
+    "word": "because",
+    "phonetic": "/bɪˈkɒz/",
+    "type": "conjunction",
+    "definition": {
+      "pt": "porque, pois",
+      "en": "for the reason that; since"
+    },
+    "examples": [
+      {
+        "en": "We stayed home because it was raining.",
+        "pt": "Nós ficamos em casa porque estava chovendo."
+      },
+      {
+        "en": "I learned Spanish because I love the culture.",
+        "pt": "Eu aprendi espanhol porque amo a cultura."
+      }
+    ]
+  },
+  {
+    "word": "any",
+    "phonetic": "/ˈeni/",
+    "type": "adjective",
+    "definition": {
+      "pt": "qualquer, nenhum (em frases negativas)",
+      "en": "used to refer to one or some of a thing or number of things, no matter how much or many"
+    },
+    "examples": [
+      {
+        "en": "Do you have any questions?",
+        "pt": "Você tem alguma dúvida?"
+      },
+      {
+        "en": "I don't have any money left.",
+        "pt": "Não me sobrou nenhum dinheiro."
+      }
+    ]
+  },
+  {
+    "word": "these",
+    "phonetic": "/ðiːz/",
+    "type": "pronoun",
+    "definition": {
+      "pt": "estes, estas",
+      "en": "plural form of 'this'"
+    },
+    "examples": [
+      {
+        "en": "These shoes are very comfortable.",
+        "pt": "Estes sapatos são muito confortáveis."
+      },
+      {
+        "en": "Are these your keys?",
+        "pt": "Estas chaves são suas?"
+      }
+    ]
+  },
+  {
+    "word": "give",
+    "phonetic": "/ɡɪv/",
+    "type": "verb",
+    "definition": {
+      "pt": "dar, entregar",
+      "en": "freely transfer the possession of something to someone"
+    },
+    "examples": [
+      {
+        "en": "Please give me a moment.",
+        "pt": "Por favor, dê-me um momento."
+      },
+      {
+        "en": "He gave her a beautiful gift.",
+        "pt": "Ele deu a ela um belo presente."
+      }
+    ]
+  },
+  {
+    "word": "day",
+    "phonetic": "/deɪ/",
+    "type": "noun",
+    "definition": {
+      "pt": "dia",
+      "en": "a period of twenty-four hours"
+    },
+    "examples": [
+      {
+        "en": "Have a nice day!",
+        "pt": "Tenha um bom dia!"
+      },
+      {
+        "en": "It was a sunny day.",
+        "pt": "Foi um dia ensolarado."
+      }
+    ]
+  },
+  {
+    "word": "most",
+    "phonetic": "/məʊst/",
+    "type": "adjective",
+    "definition": {
+      "pt": "a maioria, o mais",
+      "en": "greatest in amount or degree"
+    },
+    "examples": [
+      {
+        "en": "Most people enjoy listening to music.",
+        "pt": "A maioria das pessoas gosta de ouvir música."
+      },
+      {
+        "en": "This is the most interesting book I've read.",
+        "pt": "Este é o livro mais interessante que li."
+      }
+    ]
+  },
+  {
+    "word": "us",
+    "phonetic": "/ʌs/",
+    "type": "pronoun",
+    "definition": {
+      "pt": "nos, nós (objeto)",
+      "en": "used by a speaker to refer to himself or herself and one or more other people as the object of a verb"
+    },
+    "examples": [
+      {
+        "en": "She invited us to her birthday party.",
+        "pt": "Ela nos convidou para a festa de aniversário dela."
+      },
+      {
+        "en": "Join us for dinner tonight.",
+        "pt": "Junte-se a nós para o jantar hoje à noite."
+      }
+    ]
+  }
+]

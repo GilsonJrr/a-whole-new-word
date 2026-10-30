@@ -6,7 +6,6 @@ import Button from "../../components/common/Button";
 import LoadingScreen from "../../components/common/LoadingScreen";
 import BottomNavigation from "../../components/layout/BottomNavigation";
 import WordCard from "../../components/word/WordCard";
-import { translateText } from "../../functions/translateText";
 import {
   getDailyWord,
   getNextDailyWord,
@@ -22,17 +21,31 @@ function getLocalDateKey(): string {
   return `${year}-${month}-${day}`;
 }
 
+function waitForSimulatedLoad(signal: AbortSignal): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const timeoutId = window.setTimeout(() => {
+      signal.removeEventListener("abort", handleAbort);
+      resolve();
+    }, 1000);
+
+    function handleAbort() {
+      window.clearTimeout(timeoutId);
+      reject(new DOMException("Request was aborted.", "AbortError"));
+    }
+
+    signal.addEventListener("abort", handleAbort, { once: true });
+    if (signal.aborted) {
+      handleAbort();
+    }
+  });
+}
+
 export default function Home() {
   const navigate = useNavigate();
   const location = useLocation();
   const [dailyWord, setDailyWord] = useState<DailyWord | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [actionError, setActionError] = useState<string | null>(null);
-  const [definitionTranslations, setDefinitionTranslations] = useState<
-    Record<string, string>
-  >({});
-  const [definitionTranslationErrors, setDefinitionTranslationErrors] =
-    useState<Record<string, boolean>>({});
   const [isLoading, setIsLoading] = useState(true);
   const requestController = useRef<AbortController | null>(null);
   const loadedDate = useRef(getLocalDateKey());
@@ -47,8 +60,11 @@ export default function Home() {
       const nextWord = loadNextWord
         ? await getNextDailyWord(controller.signal)
         : await getDailyWord(controller.signal);
+      if (loadNextWord) {
+        await waitForSimulatedLoad(controller.signal);
+      }
       setDailyWord(nextWord);
-      setError(nextWord.source === "mock" ? nextWord.fallbackReason : null);
+      setError(null);
     } catch (loadError) {
       if (!controller.signal.aborted) {
         setError(
@@ -129,46 +145,7 @@ export default function Home() {
     };
   }, [loadWord]);
 
-  useEffect(() => {
-    const definition = dailyWord?.definition;
-    if (
-      !definition ||
-      definitionTranslations[definition] ||
-      definitionTranslationErrors[definition]
-    ) {
-      return;
-    }
-
-    let isCurrentDefinition = true;
-    void translateText(definition)
-      .then((translation) => {
-        if (isCurrentDefinition) {
-          setDefinitionTranslations((current) => ({
-            ...current,
-            [definition]: translation,
-          }));
-        }
-      })
-      .catch(() => {
-        if (isCurrentDefinition) {
-          setDefinitionTranslationErrors((current) => ({
-            ...current,
-            [definition]: true,
-          }));
-        }
-      });
-
-    return () => {
-      isCurrentDefinition = false;
-    };
-  }, [dailyWord?.definition]);
-
-  const isTranslatingDailyDefinition =
-    dailyWord !== null &&
-    !definitionTranslations[dailyWord.definition] &&
-    !definitionTranslationErrors[dailyWord.definition];
-
-  if (isLoading || isTranslatingDailyDefinition) {
+  if (isLoading) {
     return <LoadingScreen />;
   }
 
@@ -210,15 +187,7 @@ export default function Home() {
             phonetic={dailyWord.phonetic}
             audioUrl={dailyWord.audioUrl}
             partOfSpeech={dailyWord.partOfSpeech}
-            definition={dailyWord.definition}
-            translatedDefinition={definitionTranslations[dailyWord.definition]}
-            isTranslatingDefinition={
-              !definitionTranslations[dailyWord.definition] &&
-              !definitionTranslationErrors[dailyWord.definition]
-            }
-            definitionTranslationError={
-              definitionTranslationErrors[dailyWord.definition] ?? false
-            }
+            translatedDefinition={dailyWord.definitionTranslation ?? ""}
           />
         ) : null}
 
@@ -236,9 +205,7 @@ export default function Home() {
             disabled={isLoading || !dailyWord}
             onClick={() => {
               if (dailyWord) {
-                navigate(`/words/${encodeURIComponent(dailyWord.word)}`, {
-                  state: { word: dailyWord },
-                });
+                navigate(`/words/${encodeURIComponent(dailyWord.word)}`);
               }
             }}
           >

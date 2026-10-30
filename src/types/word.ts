@@ -4,36 +4,6 @@ export interface WordExample {
   attribution: string | null;
 }
 
-export interface FreeDictionaryPhonetic {
-  text?: string;
-  audio?: string;
-}
-
-export interface FreeDictionaryDefinition {
-  definition: string;
-  example?: string;
-  synonyms?: string[];
-  antonyms?: string[];
-}
-
-export interface FreeDictionaryMeaning {
-  partOfSpeech: string;
-  definitions: FreeDictionaryDefinition[];
-  synonyms?: string[];
-  antonyms?: string[];
-}
-
-export interface FreeDictionaryEntry {
-  word: string;
-  phonetic?: string;
-  phonetics?: FreeDictionaryPhonetic[];
-  origin?: string;
-  meanings: FreeDictionaryMeaning[];
-  sourceUrls?: string[];
-}
-
-export type FreeDictionaryResponse = FreeDictionaryEntry[];
-
 export interface WordDetails {
   word: string;
   phonetic: string;
@@ -41,6 +11,7 @@ export interface WordDetails {
   sourceUrl?: string | null;
   partOfSpeech: string;
   definition: string;
+  definitionTranslation?: string | null;
   definitionAttribution: string | null;
   example: string | null;
   exampleAttribution: string | null;
@@ -48,6 +19,6 @@ export interface WordDetails {
 }
 
 export interface DailyWord extends WordDetails {
-  source: 'dictionaryapi' | 'mock';
+  source: 'local' | 'dictionaryapi' | 'mock';
   fallbackReason: string | null;
 }

@@ -109,7 +109,6 @@ export default function Statistics() {
                           onClick={() =>
                             navigate(
                               `/words/${encodeURIComponent(entry.word.word)}`,
-                              { state: { word: entry.word } },
                             )
                           }
                         >

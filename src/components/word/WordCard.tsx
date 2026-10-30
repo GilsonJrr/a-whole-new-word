@@ -5,7 +5,6 @@ interface WordCardProps {
   phonetic: string;
   audioUrl?: string | null;
   partOfSpeech: string;
-  definition: string;
   translatedDefinition?: string;
   isTranslatingDefinition?: boolean;
   definitionTranslationError?: boolean;
@@ -32,8 +31,9 @@ export default function WordCard({
           variant="icon"
           audioUrl={audioUrl}
           word={word}
-          className="h-9 w-9 rounded-full text-blue-900"
+          className="h-9 w-auto gap-1 rounded-full px-2 py-0 text-xs text-blue-900"
           iconSize={19}
+          showLabel
         ></PronunciationButton>
       </div>
 
@@ -41,11 +41,13 @@ export default function WordCard({
         {partOfSpeech}
       </span>
 
-      {translatedDefinition ? (
-        <p className="mt-5 max-w-[17rem] text-base leading-snug text-blue-800 font-semibold mb-10">
-          {translatedDefinition}
-        </p>
-      ) : null}
+      <div className="mt-5 mb-10 max-w-[17rem] px-5">
+        {translatedDefinition && (
+          <p className="text-base font-semibold leading-snug text-blue-800">
+            {translatedDefinition}
+          </p>
+        )}
+      </div>
     </article>
   );
 }

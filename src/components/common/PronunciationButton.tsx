@@ -10,6 +10,7 @@ interface PronunciationButtonProps {
   iconSize?: number;
   variant?: "primary" | "outline" | "icon";
   icon?: ReactNode;
+  showLabel?: boolean;
 }
 
 export default function PronunciationButton({
@@ -19,6 +20,7 @@ export default function PronunciationButton({
   iconSize = 20,
   variant = "icon",
   icon,
+  showLabel = false,
 }: PronunciationButtonProps) {
   const [playbackError, setPlaybackError] = useState<string | null>(null);
 
@@ -74,6 +76,7 @@ export default function PronunciationButton({
         onClick={() => void playPronunciation()}
       >
         {icon ?? <Volume2 size={iconSize} aria-hidden="true" />}
+        {showLabel}
       </Button>
       {playbackError && (
         <span className="sr-only" role="alert" aria-live="assertive">

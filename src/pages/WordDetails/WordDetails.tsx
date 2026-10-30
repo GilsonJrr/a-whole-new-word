@@ -7,33 +7,12 @@ import {
   Volume2,
 } from "lucide-react";
 import type { ReactNode } from "react";
-import { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/common/Button";
-import LoadingScreen from "../../components/common/LoadingScreen";
 import PronunciationButton from "../../components/common/PronunciationButton";
-import { mockWords } from "../../data/mockWords";
-import { translateText } from "../../functions/translateText";
-import { markWordLearned } from "../../services/wordService";
+import { findCatalogWord, markWordLearned } from "../../services/wordService";
 import type { DailyWord, WordExample } from "../../types/word";
-
-interface WordDetailsLocationState {
-  word?: DailyWord;
-}
-
-function isWordDetailsLocationState(
-  value: unknown,
-): value is WordDetailsLocationState {
-  return (
-    typeof value === "object" &&
-    value !== null &&
-    "word" in value &&
-    typeof value.word === "object" &&
-    value.word !== null &&
-    "word" in value.word &&
-    typeof value.word.word === "string"
-  );
-}
 
 function getExamples(word: DailyWord): WordExample[] {
   if (word.examples?.length) {
@@ -69,10 +48,7 @@ function highlightMainWord(text: string, mainWord: string): ReactNode[] {
 
     if (matchedWord.toLocaleLowerCase() === mainWord.toLocaleLowerCase()) {
       parts.push(
-        <strong
-          key={`${matchIndex}-${matchedWord}`}
-          className="font-black underline"
-        >
+        <strong key={`${matchIndex}-${matchedWord}`} className="font-black">
           {matchedWord}
         </strong>,
       );
@@ -93,87 +69,10 @@ function highlightMainWord(text: string, mainWord: string): ReactNode[] {
 
 export default function WordDetails() {
   const navigate = useNavigate();
-  const location = useLocation();
   const { id } = useParams();
-  const locationState = isWordDetailsLocationState(location.state)
-    ? location.state
-    : null;
-  const mockWord = mockWords.find(
-    (item) => item.word.toLowerCase() === (id ?? "").toLowerCase(),
-  );
-  const word: DailyWord | null =
-    locationState?.word ??
-    (mockWord
-      ? {
-          ...mockWord,
-          source: "mock",
-          fallbackReason: null,
-        }
-      : null);
+  const word: DailyWord | null = findCatalogWord(id ?? "");
   const examples = word ? getExamples(word) : [];
-  const [translations, setTranslations] = useState<Record<string, string>>({});
-  const [translationErrors, setTranslationErrors] = useState<
-    Record<string, boolean>
-  >({});
-  const [definitionTranslations, setDefinitionTranslations] = useState<
-    Record<string, string>
-  >({});
-  const [definitionTranslationErrors, setDefinitionTranslationErrors] =
-    useState<Record<string, boolean>>({});
   const [learningError, setLearningError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (!word) {
-      return;
-    }
-
-    let isCurrentWord = true;
-    void translateText(word.definition)
-      .then((translation) => {
-        if (isCurrentWord) {
-          setDefinitionTranslations((current) => ({
-            ...current,
-            [word.definition]: translation,
-          }));
-        }
-      })
-      .catch(() => {
-        if (isCurrentWord) {
-          setDefinitionTranslationErrors((current) => ({
-            ...current,
-            [word.definition]: true,
-          }));
-        }
-      });
-
-    const examplesToTranslate = examples.filter(
-      (example) => !example.translation && !translations[example.text],
-    );
-
-    for (const example of examplesToTranslate) {
-      void translateText(example.text)
-        .then((translation) => {
-          if (isCurrentWord) {
-            setTranslations((current) => ({
-              ...current,
-              [example.text]: translation,
-            }));
-          }
-        })
-        .catch(() => {
-          if (isCurrentWord) {
-            setTranslationErrors((current) => ({
-              ...current,
-              [example.text]: true,
-            }));
-          }
-        });
-    }
-
-    return () => {
-      isCurrentWord = false;
-    };
-  }, [word?.word]);
 
   if (!word) {
     return (
@@ -189,22 +88,6 @@ export default function WordDetails() {
         <h1 className="mt-8 text-xl font-bold">Palavra não encontrada</h1>
       </main>
     );
-  }
-
-  const definitionTranslation = definitionTranslations[word.definition];
-  const definitionTranslationError =
-    definitionTranslationErrors[word.definition] ?? false;
-  const isTranslationPending =
-    (!definitionTranslation && !definitionTranslationError) ||
-    examples.some(
-      (example) =>
-        !example.translation &&
-        !translations[example.text] &&
-        !translationErrors[example.text],
-    );
-
-  if (isTranslationPending) {
-    return <LoadingScreen />;
   }
 
   function handleLearnedWord() {
@@ -225,7 +108,7 @@ export default function WordDetails() {
   }
 
   return (
-    <main className="mx-auto flex min-h-dvh w-full flex-col overflow-hidden bg-white text-navy sm:my-6 sm:min-h-[min(52rem,calc(100dvh-3rem))] sm:rounded-[1.75rem] sm:border sm:border-border sm:shadow-xl">
+    <main className="mx-auto flex min-h-dvh flex-col overflow-hidden bg-white text-navy">
       <header className="rounded-b-2xl w-full bg-blue-950 px-7 pb-9 pt-5 text-white">
         <Button
           variant="icon"
@@ -263,26 +146,9 @@ export default function WordDetails() {
             <BookOpen size={25} aria-hidden="true" />
             Definição
           </h2>
-          {/* <p className="mt-3 text-base leading-relaxed text-blue-900 font-bold">
-            {word.definition}
-          </p> */}
-          {definitionTranslation ? (
-            <p className="mt-3 text-base leading-relaxed text-blue-900 font-bold">
-              {definitionTranslation}
-            </p>
-          ) : definitionTranslationError ? (
-            <p className="mt-2 text-sm text-muted" role="status">
-              Não foi possível traduzir a definição.
-            </p>
-          ) : (
-            <p
-              className="mt-2 text-sm text-muted"
-              role="status"
-              aria-live="polite"
-            >
-              Traduzindo definição...
-            </p>
-          )}
+          <p className="mt-3 text-base leading-relaxed text-blue-900 font-bold">
+            {word.definitionTranslation}
+          </p>
         </section>
 
         <section aria-labelledby="examples-heading">
@@ -300,29 +166,14 @@ export default function WordDetails() {
                   key={`${example.text}-${index}`}
                   className="rounded-2xl bg-gradient-to-br from-surface to-[#edf3fc] px-5 py-4"
                 >
-                  <p className="leading-relaxed text-blue-900 font-semibold">
+                  <p className="leading-relaxed text-blue-900 font-medium">
                     “{highlightMainWord(example.text, word.word)}”
                   </p>
-                  {(example.translation || translations[example.text]) && (
+                  {example.translation && (
                     <p className="mt-1 leading-relaxed text-blue-800/60 text-sm">
-                      “{example.translation || translations[example.text]}”
+                      “{example.translation}”
                     </p>
                   )}
-                  {!example.translation &&
-                    !translations[example.text] &&
-                    (translationErrors[example.text] ? (
-                      <p className="mt-2 text-sm text-muted" role="status">
-                        Não foi possível traduzir este exemplo.
-                      </p>
-                    ) : (
-                      <p
-                        className="mt-2 text-sm text-muted"
-                        role="status"
-                        aria-live="polite"
-                      >
-                        Traduzindo exemplo...
-                      </p>
-                    ))}
                   {example.attribution && (
                     <p className="mt-2 text-xs text-blue-900 font-semibold">
                       {example.attribution}

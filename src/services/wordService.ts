@@ -1,15 +1,29 @@
-import { mockWords } from '../data/mockWords';
-import type {
-  DailyWord,
-  FreeDictionaryEntry,
-  FreeDictionaryResponse,
-  WordExample,
-} from '../types/word';
+import wordsData from '../data/words.json';
+import type { DailyWord, WordExample } from '../types/word';
 
 const storageKey = 'a-whole-new-word:vocabulary:v1';
-const randomWordsUrl = '/api/random-words';
-const dictionaryUrl = '/api/dictionary';
-const randomBatchSize = 10;
+
+interface CatalogWord {
+  word: string;
+  phonetic: string;
+  type: string;
+  definition: {
+    en: string;
+    pt: string;
+  };
+  examples: Array<{
+    en: string;
+    pt: string;
+  }>;
+}
+
+const wordCatalog: CatalogWord[] = wordsData;
+const usableWordCatalog = wordCatalog.filter(
+  (entry) =>
+    entry.phonetic.trim() !== '' &&
+    !entry.definition.en.includes('Specific meaning to be reviewed') &&
+    !entry.definition.pt.includes('Significado específico a revisar'),
+);
 
 interface StoredDailyWord {
   date: string;
@@ -41,72 +55,11 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null;
 }
 
-function getString(value: unknown): string | null {
-  return typeof value === 'string' && value.trim() ? value.trim() : null;
-}
-
 function isStringArray(value: unknown): value is string[] {
   return (
     Array.isArray(value) &&
     value.every((item) => typeof item === 'string')
   );
-}
-
-function isFreeDictionaryEntry(value: unknown): value is FreeDictionaryEntry {
-  if (!isRecord(value) || typeof value.word !== 'string') {
-    return false;
-  }
-
-  const validPhonetics =
-    value.phonetics === undefined ||
-    (Array.isArray(value.phonetics) &&
-      value.phonetics.every(
-        (phonetic) =>
-          isRecord(phonetic) &&
-          (phonetic.text === undefined ||
-            typeof phonetic.text === 'string') &&
-          (phonetic.audio === undefined ||
-            typeof phonetic.audio === 'string'),
-      ));
-
-  const validMeanings =
-    Array.isArray(value.meanings) &&
-    value.meanings.every(
-      (meaning) =>
-        isRecord(meaning) &&
-        typeof meaning.partOfSpeech === 'string' &&
-        Array.isArray(meaning.definitions) &&
-        meaning.definitions.every(
-          (definition) =>
-            isRecord(definition) &&
-            typeof definition.definition === 'string' &&
-            (definition.example === undefined ||
-              typeof definition.example === 'string') &&
-            (definition.synonyms === undefined ||
-              isStringArray(definition.synonyms)) &&
-            (definition.antonyms === undefined ||
-              isStringArray(definition.antonyms)),
-        ) &&
-        (meaning.synonyms === undefined ||
-          isStringArray(meaning.synonyms)) &&
-        (meaning.antonyms === undefined ||
-          isStringArray(meaning.antonyms)),
-    );
-
-  return (
-    (value.phonetic === undefined ||
-      typeof value.phonetic === 'string') &&
-    (value.origin === undefined || typeof value.origin === 'string') &&
-    (value.sourceUrls === undefined || isStringArray(value.sourceUrls)) &&
-    validPhonetics &&
-    validMeanings
-  );
-}
-
-function isFreeDictionaryResponse(
-  value: unknown,
-): value is FreeDictionaryResponse {
-  return Array.isArray(value) && value.every(isFreeDictionaryEntry);
 }
 
 function shuffleWords(words: string[]): string[] {
@@ -139,7 +92,12 @@ function isDailyWord(value: unknown): value is DailyWord {
     (typeof value.example === 'string' || value.example === null) &&
     (typeof value.exampleAttribution === 'string' ||
       value.exampleAttribution === null) &&
-    (value.source === 'dictionaryapi' || value.source === 'mock') &&
+    (value.source === 'local' ||
+      value.source === 'dictionaryapi' ||
+      value.source === 'mock') &&
+    (typeof value.definitionTranslation === 'string' ||
+      value.definitionTranslation === null ||
+      value.definitionTranslation === undefined) &&
     (typeof value.fallbackReason === 'string' ||
       value.fallbackReason === null)
   );
@@ -243,114 +201,6 @@ function writeVocabulary(value: StoredVocabulary): void {
   localStorage.setItem(storageKey, JSON.stringify(value));
 }
 
-function createDictionaryWord(entry: FreeDictionaryEntry): DailyWord | null {
-  const definitionMeaning = entry.meanings.find(
-    (meaning) => meaning.definitions.length > 0,
-  );
-  const definitionItem = definitionMeaning?.definitions.find(
-    (item) => getString(item.definition) !== null,
-  );
-  const definition = definitionItem
-    ? getString(definitionItem.definition)
-    : null;
-
-  if (!definition) {
-    return null;
-  }
-
-  const phonetics = entry.phonetics ?? [];
-  const phonetic =
-    getString(entry.phonetic) ??
-    phonetics.map((item) => getString(item.text)).find(
-      (text): text is string => text !== null,
-    ) ??
-    '';
-  const audioUrl =
-    phonetics.map((item) => getString(item.audio)).find(
-      (audio): audio is string => audio !== null,
-    ) ?? null;
-  const examples: WordExample[] = [];
-
-  for (const meaning of entry.meanings) {
-    for (const item of meaning.definitions) {
-      const text = getString(item.example);
-      if (text && !examples.some((example) => example.text === text)) {
-        examples.push({ text, translation: null, attribution: null });
-      }
-      if (examples.length === 2) {
-        break;
-      }
-    }
-    if (examples.length === 2) {
-      break;
-    }
-  }
-
-  return {
-    word: entry.word,
-    phonetic,
-    audioUrl:
-      audioUrl?.startsWith('//') ? `https:${audioUrl}` : audioUrl,
-    sourceUrl: entry.sourceUrls?.[0] ?? null,
-    partOfSpeech: definitionMeaning?.partOfSpeech ?? 'word',
-    definition,
-    definitionAttribution: 'Free Dictionary API',
-    example: examples[0]?.text ?? null,
-    exampleAttribution: null,
-    examples,
-    source: 'dictionaryapi',
-    fallbackReason: null,
-  };
-}
-
-async function getRandomCandidates(signal?: AbortSignal): Promise<string[]> {
-  const response = await fetch(
-    `${randomWordsUrl}?number=${randomBatchSize}`,
-    { signal },
-  );
-  if (!response.ok) {
-    throw new Error(`A API de palavras aleatórias respondeu com status ${response.status}.`);
-  }
-
-  const payload: unknown = await response.json();
-  if (
-    !Array.isArray(payload) ||
-    !payload.every((word) => typeof word === 'string')
-  ) {
-    throw new Error('A API de palavras aleatórias retornou dados inválidos.');
-  }
-
-  return [...new Set(payload.map((word) => word.trim()).filter(Boolean))];
-}
-
-async function getDictionaryWord(
-  word: string,
-  signal?: AbortSignal,
-): Promise<DailyWord | null> {
-  const response = await fetch(
-    `${dictionaryUrl}/${encodeURIComponent(word)}`,
-    { signal },
-  );
-
-  if (response.status === 404) {
-    return null;
-  }
-  if (!response.ok) {
-    throw new Error(
-      `A Free Dictionary API respondeu com status ${response.status}.`,
-    );
-  }
-
-  const payload: unknown = await response.json();
-  if (!isFreeDictionaryResponse(payload)) {
-    throw new Error('A resposta da Free Dictionary API tem formato inválido.');
-  }
-
-  return payload
-    .map(createDictionaryWord)
-    .find((entry): entry is DailyWord => entry !== null) ?? null;
-}
-
 function saveDailyWord(
   vocabulary: StoredVocabulary,
   word: DailyWord,
@@ -380,31 +230,35 @@ function saveDailyWord(
   return word;
 }
 
-function getMockWord(
-  vocabulary: StoredVocabulary,
-  excludedWord: string | undefined,
-  fallbackReason: string,
-): DailyWord | null {
-  const seenWords = new Set(
-    vocabulary.seenWords.map((word) => word.toLowerCase()),
-  );
-  const availableWords = mockWords.filter(
-    ({ word }) =>
-      !seenWords.has(word.toLowerCase()) &&
-      word.toLowerCase() !== excludedWord?.toLowerCase(),
-  );
-  const candidate =
-    availableWords[Math.floor(Math.random() * availableWords.length)];
-
-  if (!candidate) {
-    return null;
-  }
+function createCatalogDailyWord(entry: CatalogWord): DailyWord {
+  const examples: WordExample[] = entry.examples.map((example) => ({
+    text: example.en,
+    translation: example.pt,
+    attribution: null,
+  }));
 
   return {
-    ...candidate,
-    source: 'mock',
-    fallbackReason,
+    word: entry.word,
+    phonetic: entry.phonetic,
+    audioUrl: null,
+    sourceUrl: null,
+    partOfSpeech: entry.type,
+    definition: entry.definition.en,
+    definitionTranslation: entry.definition.pt,
+    definitionAttribution: 'Catálogo local',
+    example: examples[0]?.text ?? null,
+    exampleAttribution: null,
+    examples,
+    source: 'local',
+    fallbackReason: null,
   };
+}
+
+export function findCatalogWord(word: string): DailyWord | null {
+  const entry = usableWordCatalog.find(
+    (item) => item.word.toLowerCase() === word.toLowerCase(),
+  );
+  return entry ? createCatalogDailyWord(entry) : null;
 }
 
 async function getUnseenWord(
@@ -412,58 +266,35 @@ async function getUnseenWord(
   signal?: AbortSignal,
   excludedWord?: string,
 ): Promise<DailyWord> {
+  if (signal?.aborted) {
+    throw new DOMException('Request was aborted.', 'AbortError');
+  }
+
   const seenWords = new Set(
     vocabulary.seenWords.map((word) => word.toLowerCase()),
   );
-  let fallbackReason = 'Não foi possível encontrar uma nova palavra.';
-
-  try {
-    const candidates = await getRandomCandidates(signal);
-    const unseenCandidates = candidates.filter(
-        (word) =>
-          /^[a-z][a-z'-]{1,39}$/i.test(word) &&
+  const candidates = shuffleWords(
+    usableWordCatalog
+      .filter(
+        ({ word }) =>
           !seenWords.has(word.toLowerCase()) &&
           word.toLowerCase() !== excludedWord?.toLowerCase(),
-      );
-    const shuffledCandidates = shuffleWords(unseenCandidates);
+      )
+      .map((entry) => entry.word),
+  );
+  const candidate = candidates[0];
 
-    for (const candidate of shuffledCandidates) {
-      if (signal?.aborted) {
-        throw new DOMException('Request was aborted.', 'AbortError');
-      }
-
-      try {
-        const dictionaryWord = await getDictionaryWord(candidate, signal);
-        if (dictionaryWord) {
-          return dictionaryWord;
-        }
-      } catch (error) {
-        if (signal?.aborted) {
-          throw error;
-        }
-        fallbackReason =
-          error instanceof Error
-            ? error.message
-            : 'A Free Dictionary API está indisponível.';
-      }
+  if (candidate) {
+    const entry = usableWordCatalog.find(
+      (item) => item.word.toLowerCase() === candidate.toLowerCase(),
+    );
+    if (entry) {
+      return createCatalogDailyWord(entry);
     }
-  } catch (error) {
-    if (signal?.aborted) {
-      throw error;
-    }
-    fallbackReason =
-      error instanceof Error
-        ? error.message
-        : 'As APIs de palavras estão indisponíveis.';
-  }
-
-  const mockWord = getMockWord(vocabulary, excludedWord, fallbackReason);
-  if (mockWord) {
-    return mockWord;
   }
 
   throw new Error(
-    `${fallbackReason} Todas as palavras mock também já foram vistas.`,
+    'Todas as palavras disponíveis no catálogo já foram vistas.',
   );
 }
 
@@ -472,7 +303,10 @@ export async function getDailyWord(signal?: AbortSignal): Promise<DailyWord> {
   const today = getLocalDateKey();
 
   if (vocabulary.dailyWord?.date === today) {
-    return vocabulary.dailyWord.word;
+    const catalogWord = findCatalogWord(vocabulary.dailyWord.word.word);
+    if (catalogWord) {
+      return catalogWord;
+    }
   }
 
   const dailyWord = await getUnseenWord(vocabulary, signal);
@@ -545,19 +379,35 @@ export function markWordLearned(word: DailyWord): void {
 
 export function getVocabularyStats(): VocabularyStats {
   const vocabulary = readVocabulary();
+  const catalogWords = new Set(
+    usableWordCatalog.map((entry) => entry.word.toLowerCase()),
+  );
   const seenWords = new Set(
-    vocabulary.seenWords.map((word) => word.toLowerCase()),
+    vocabulary.seenWords
+      .map((word) => word.toLowerCase())
+      .filter((word) => catalogWords.has(word)),
   );
   const learnedWords = new Set(
-    vocabulary.learnedWords.map((word) => word.toLowerCase()),
+    vocabulary.learnedWords
+      .map((word) => word.toLowerCase())
+      .filter((word) => catalogWords.has(word)),
   );
+  const knownWords = new Set(
+    vocabulary.knownWords
+      .map((word) => word.toLowerCase())
+      .filter((word) => catalogWords.has(word)),
+  );
+  const history = vocabulary.history.flatMap((entry) => {
+    const catalogWord = findCatalogWord(entry.word.word);
+    return catalogWord ? [{ date: entry.date, word: catalogWord }] : [];
+  });
 
   return {
     newWords: seenWords.size,
     learnedWords: [...learnedWords].filter((word) => seenWords.has(word)).length,
     learnedWordKeys: [...learnedWords].filter((word) => seenWords.has(word)),
-    hasMarkedKnown: vocabulary.knownWords.length > 0,
-    history: [...vocabulary.history].sort((first, second) =>
+    hasMarkedKnown: knownWords.size > 0,
+    history: history.sort((first, second) =>
       second.date.localeCompare(first.date),
     ),
   };
