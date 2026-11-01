@@ -10,8 +10,10 @@ import type { ReactNode } from "react";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/common/Button";
+import LoadingScreen from "../../components/common/LoadingScreen";
 import PronunciationButton from "../../components/common/PronunciationButton";
-import { findCatalogWord, markWordLearned } from "../../services/wordService";
+import useWordDetails from "../../hooks/useWordDetails";
+import { markWordLearned } from "../../services/wordService";
 import type { DailyWord, WordExample } from "../../types/word";
 
 function getExamples(word: DailyWord): WordExample[] {
@@ -70,9 +72,14 @@ function highlightMainWord(text: string, mainWord: string): ReactNode[] {
 export default function WordDetails() {
   const navigate = useNavigate();
   const { id } = useParams();
-  const word: DailyWord | null = findCatalogWord(id ?? "");
+  const wordQuery = useWordDetails(id);
+  const word = wordQuery.data ?? null;
   const examples = word ? getExamples(word) : [];
   const [learningError, setLearningError] = useState<string | null>(null);
+
+  if (wordQuery.isPending) {
+    return <LoadingScreen />;
+  }
 
   if (!word) {
     return (
@@ -85,7 +92,27 @@ export default function WordDetails() {
         >
           <ArrowLeft size={22} aria-hidden="true" />
         </Button>
-        <h1 className="mt-8 text-xl font-bold">Palavra não encontrada</h1>
+        <h1 className="mt-8 text-xl font-bold">
+          {wordQuery.error
+            ? "Não foi possível carregar a palavra"
+            : "Palavra não encontrada"}
+        </h1>
+        {wordQuery.error && (
+          <>
+            <p className="mt-3 text-sm text-muted" role="alert">
+              {wordQuery.error instanceof Error
+                ? wordQuery.error.message
+                : "Não foi possível carregar esta palavra."}
+            </p>
+            <Button
+              variant="outline"
+              className="mt-5 min-h-11 px-5 text-sm"
+              onClick={() => void wordQuery.refetch()}
+            >
+              Tentar novamente
+            </Button>
+          </>
+        )}
       </main>
     );
   }

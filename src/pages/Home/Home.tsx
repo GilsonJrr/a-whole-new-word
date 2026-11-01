@@ -1,17 +1,13 @@
 import { CalendarDays } from "lucide-react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import AppLogo from "../../components/common/AppLogo";
 import Button from "../../components/common/Button";
 import LoadingScreen from "../../components/common/LoadingScreen";
 import BottomNavigation from "../../components/layout/BottomNavigation";
 import WordCard from "../../components/word/WordCard";
-import {
-  getDailyWord,
-  getNextDailyWord,
-  markWordKnown,
-} from "../../services/wordService";
-import type { DailyWord } from "../../types/word";
+import useDailyWord from "../../hooks/useDailyWord";
+import { markWordKnown } from "../../services/wordService";
 
 function getLocalDateKey(): string {
   const date = new Date();
@@ -21,64 +17,18 @@ function getLocalDateKey(): string {
   return `${year}-${month}-${day}`;
 }
 
-function waitForSimulatedLoad(signal: AbortSignal): Promise<void> {
-  return new Promise((resolve, reject) => {
-    const timeoutId = window.setTimeout(() => {
-      signal.removeEventListener("abort", handleAbort);
-      resolve();
-    }, 1000);
-
-    function handleAbort() {
-      window.clearTimeout(timeoutId);
-      reject(new DOMException("Request was aborted.", "AbortError"));
-    }
-
-    signal.addEventListener("abort", handleAbort, { once: true });
-    if (signal.aborted) {
-      handleAbort();
-    }
-  });
-}
-
 export default function Home() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [dailyWord, setDailyWord] = useState<DailyWord | null>(null);
-  const [error, setError] = useState<string | null>(null);
   const [actionError, setActionError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const requestController = useRef<AbortController | null>(null);
+  const {
+    dailyWord,
+    error,
+    isLoading,
+    loadNextWord,
+    reloadDailyWord,
+  } = useDailyWord();
   const loadedDate = useRef(getLocalDateKey());
-  const loadWord = useCallback(async (loadNextWord = false) => {
-    requestController.current?.abort();
-    const controller = new AbortController();
-    requestController.current = controller;
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      const nextWord = loadNextWord
-        ? await getNextDailyWord(controller.signal)
-        : await getDailyWord(controller.signal);
-      if (loadNextWord) {
-        await waitForSimulatedLoad(controller.signal);
-      }
-      setDailyWord(nextWord);
-      setError(null);
-    } catch (loadError) {
-      if (!controller.signal.aborted) {
-        setError(
-          loadError instanceof Error
-            ? loadError.message
-            : "Não foi possível carregar uma palavra.",
-        );
-      }
-    } finally {
-      if (!controller.signal.aborted) {
-        setIsLoading(false);
-      }
-    }
-  }, []);
 
   function handleAlreadyKnown() {
     if (!dailyWord) {
@@ -88,7 +38,13 @@ export default function Home() {
     try {
       markWordKnown(dailyWord);
       setActionError(null);
-      void loadWord(true);
+      void loadNextWord().catch((learnError: unknown) => {
+        setActionError(
+          learnError instanceof Error
+            ? learnError.message
+            : "Não foi possível carregar a próxima palavra.",
+        );
+      });
     } catch (learnError) {
       setActionError(
         learnError instanceof Error
@@ -106,8 +62,15 @@ export default function Home() {
       location.state.loadNextWord === true;
     if (shouldLoadNextWord) {
       navigate("/", { replace: true, state: null });
+      setActionError(null);
+      void loadNextWord().catch((loadError: unknown) => {
+        setActionError(
+          loadError instanceof Error
+            ? loadError.message
+            : "Não foi possível carregar a próxima palavra.",
+        );
+      });
     }
-    void loadWord(shouldLoadNextWord);
 
     function checkForNewDay() {
       if (document.visibilityState !== "visible") {
@@ -117,7 +80,13 @@ export default function Home() {
       const currentDate = getLocalDateKey();
       if (currentDate !== loadedDate.current) {
         loadedDate.current = currentDate;
-        void loadWord();
+        void reloadDailyWord().catch((loadError: unknown) => {
+          setActionError(
+            loadError instanceof Error
+              ? loadError.message
+              : "Não foi possível carregar a palavra do dia.",
+          );
+        });
       }
     }
 
@@ -141,9 +110,13 @@ export default function Home() {
       window.clearTimeout(midnightTimer);
       window.removeEventListener("focus", checkForNewDay);
       document.removeEventListener("visibilitychange", checkForNewDay);
-      requestController.current?.abort();
     };
-  }, [loadWord]);
+  }, [location.state, navigate, loadNextWord, reloadDailyWord]);
+
+  const errorMessage =
+    error instanceof Error
+      ? error.message
+      : "Não foi possível carregar uma palavra.";
 
   if (isLoading) {
     return <LoadingScreen />;
@@ -172,11 +145,21 @@ export default function Home() {
             className="flex min-h-[19.5rem] flex-col items-center justify-center gap-4 rounded-[1.125rem] bg-surface px-6 text-center"
             role="alert"
           >
-            <p className="text-sm text-navy">{error}</p>
+            <p className="text-sm text-navy">{errorMessage}</p>
             <Button
               variant="outline"
               className="min-h-11 px-5 text-sm"
-              onClick={() => void loadWord()}
+              onClick={() =>
+                void reloadDailyWord()
+                  .then(() => setActionError(null))
+                  .catch((reloadError: unknown) => {
+                    setActionError(
+                      reloadError instanceof Error
+                        ? reloadError.message
+                        : "Não foi possível carregar uma palavra.",
+                    );
+                  })
+              }
             >
               Tentar novamente
             </Button>

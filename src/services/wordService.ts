@@ -1,29 +1,7 @@
-import wordsData from '../data/words.json';
-import type { DailyWord, WordExample } from '../types/word';
+import type { DailyWord } from '../types/word';
+import { getTodaysWord } from './api/wordsApi';
 
 const storageKey = 'a-whole-new-word:vocabulary:v1';
-
-interface CatalogWord {
-  word: string;
-  phonetic: string;
-  type: string;
-  definition: {
-    en: string;
-    pt: string;
-  };
-  examples: Array<{
-    en: string;
-    pt: string;
-  }>;
-}
-
-const wordCatalog: CatalogWord[] = wordsData;
-const usableWordCatalog = wordCatalog.filter(
-  (entry) =>
-    entry.phonetic.trim() !== '' &&
-    !entry.definition.en.includes('Specific meaning to be reviewed') &&
-    !entry.definition.pt.includes('Significado específico a revisar'),
-);
 
 interface StoredDailyWord {
   date: string;
@@ -62,20 +40,6 @@ function isStringArray(value: unknown): value is string[] {
   );
 }
 
-function shuffleWords(words: string[]): string[] {
-  const shuffled = [...words];
-
-  for (let index = shuffled.length - 1; index > 0; index -= 1) {
-    const swapIndex = Math.floor(Math.random() * (index + 1));
-    [shuffled[index], shuffled[swapIndex]] = [
-      shuffled[swapIndex],
-      shuffled[index],
-    ];
-  }
-
-  return shuffled;
-}
-
 function isDailyWord(value: unknown): value is DailyWord {
   return (
     isRecord(value) &&
@@ -92,14 +56,20 @@ function isDailyWord(value: unknown): value is DailyWord {
     (typeof value.example === 'string' || value.example === null) &&
     (typeof value.exampleAttribution === 'string' ||
       value.exampleAttribution === null) &&
-    (value.source === 'local' ||
-      value.source === 'dictionaryapi' ||
-      value.source === 'mock') &&
     (typeof value.definitionTranslation === 'string' ||
       value.definitionTranslation === null ||
       value.definitionTranslation === undefined) &&
-    (typeof value.fallbackReason === 'string' ||
-      value.fallbackReason === null)
+    (value.examples === undefined ||
+      (Array.isArray(value.examples) &&
+        value.examples.every(
+          (example) =>
+            isRecord(example) &&
+            typeof example.text === 'string' &&
+            (typeof example.translation === 'string' ||
+              example.translation === null) &&
+            (typeof example.attribution === 'string' ||
+              example.attribution === null),
+        )))
   );
 }
 
@@ -230,86 +200,19 @@ function saveDailyWord(
   return word;
 }
 
-function createCatalogDailyWord(entry: CatalogWord): DailyWord {
-  const examples: WordExample[] = entry.examples.map((example) => ({
-    text: example.en,
-    translation: example.pt,
-    attribution: null,
-  }));
-
-  return {
-    word: entry.word,
-    phonetic: entry.phonetic,
-    audioUrl: null,
-    sourceUrl: null,
-    partOfSpeech: entry.type,
-    definition: entry.definition.en,
-    definitionTranslation: entry.definition.pt,
-    definitionAttribution: 'Catálogo local',
-    example: examples[0]?.text ?? null,
-    exampleAttribution: null,
-    examples,
-    source: 'local',
-    fallbackReason: null,
-  };
-}
-
-export function findCatalogWord(word: string): DailyWord | null {
-  const entry = usableWordCatalog.find(
-    (item) => item.word.toLowerCase() === word.toLowerCase(),
-  );
-  return entry ? createCatalogDailyWord(entry) : null;
-}
-
-async function getUnseenWord(
-  vocabulary: StoredVocabulary,
-  signal?: AbortSignal,
-  excludedWord?: string,
-): Promise<DailyWord> {
-  if (signal?.aborted) {
-    throw new DOMException('Request was aborted.', 'AbortError');
-  }
-
-  const seenWords = new Set(
-    vocabulary.seenWords.map((word) => word.toLowerCase()),
-  );
-  const candidates = shuffleWords(
-    usableWordCatalog
-      .filter(
-        ({ word }) =>
-          !seenWords.has(word.toLowerCase()) &&
-          word.toLowerCase() !== excludedWord?.toLowerCase(),
-      )
-      .map((entry) => entry.word),
-  );
-  const candidate = candidates[0];
-
-  if (candidate) {
-    const entry = usableWordCatalog.find(
-      (item) => item.word.toLowerCase() === candidate.toLowerCase(),
-    );
-    if (entry) {
-      return createCatalogDailyWord(entry);
-    }
-  }
-
-  throw new Error(
-    'Todas as palavras disponíveis no catálogo já foram vistas.',
-  );
-}
-
 export async function getDailyWord(signal?: AbortSignal): Promise<DailyWord> {
   const vocabulary = readVocabulary();
   const today = getLocalDateKey();
 
-  if (vocabulary.dailyWord?.date === today) {
-    const catalogWord = findCatalogWord(vocabulary.dailyWord.word.word);
-    if (catalogWord) {
-      return catalogWord;
-    }
+  if (
+    vocabulary.dailyWord?.date === today &&
+    isRecord(vocabulary.dailyWord.word) &&
+    vocabulary.dailyWord.word.source === undefined
+  ) {
+    return vocabulary.dailyWord.word;
   }
 
-  const dailyWord = await getUnseenWord(vocabulary, signal);
+  const dailyWord = await getTodaysWord(signal);
   return saveDailyWord(vocabulary, dailyWord);
 }
 
@@ -317,8 +220,7 @@ export async function getNextDailyWord(
   signal?: AbortSignal,
 ): Promise<DailyWord> {
   const vocabulary = readVocabulary();
-  const currentWord = vocabulary.dailyWord?.word.word;
-  const nextWord = await getUnseenWord(vocabulary, signal, currentWord);
+  const nextWord = await getTodaysWord(signal);
   return saveDailyWord(vocabulary, nextWord);
 }
 
@@ -379,28 +281,16 @@ export function markWordLearned(word: DailyWord): void {
 
 export function getVocabularyStats(): VocabularyStats {
   const vocabulary = readVocabulary();
-  const catalogWords = new Set(
-    usableWordCatalog.map((entry) => entry.word.toLowerCase()),
-  );
   const seenWords = new Set(
-    vocabulary.seenWords
-      .map((word) => word.toLowerCase())
-      .filter((word) => catalogWords.has(word)),
+    vocabulary.seenWords.map((word) => word.toLowerCase()),
   );
   const learnedWords = new Set(
-    vocabulary.learnedWords
-      .map((word) => word.toLowerCase())
-      .filter((word) => catalogWords.has(word)),
+    vocabulary.learnedWords.map((word) => word.toLowerCase()),
   );
   const knownWords = new Set(
-    vocabulary.knownWords
-      .map((word) => word.toLowerCase())
-      .filter((word) => catalogWords.has(word)),
+    vocabulary.knownWords.map((word) => word.toLowerCase()),
   );
-  const history = vocabulary.history.flatMap((entry) => {
-    const catalogWord = findCatalogWord(entry.word.word);
-    return catalogWord ? [{ date: entry.date, word: catalogWord }] : [];
-  });
+  const history = vocabulary.history;
 
   return {
     newWords: seenWords.size,

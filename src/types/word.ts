@@ -18,7 +18,4 @@ export interface WordDetails {
   examples?: WordExample[];
 }
 
-export interface DailyWord extends WordDetails {
-  source: 'local' | 'dictionaryapi' | 'mock';
-  fallbackReason: string | null;
-}
+export type DailyWord = WordDetails;
