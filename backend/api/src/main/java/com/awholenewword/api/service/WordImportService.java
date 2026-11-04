@@ -33,6 +33,7 @@ public class WordImportService {
             Word word = new Word();
 
             word.setWord(request.word());
+            word.setLanguage(request.language());
             word.setPhonetic(request.phonetic());
             word.setType(request.type());
             word.setDefinitionPt(request.definition().pt());

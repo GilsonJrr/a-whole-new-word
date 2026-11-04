@@ -96,7 +96,7 @@ async function fetchWord(
 }
 
 export function getTodaysWord(signal?: AbortSignal): Promise<DailyWord> {
-  return fetchWord("todaysWord", signal);
+  return fetchWord("", signal);
 }
 
 export function getWordByName(

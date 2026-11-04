@@ -1,4 +1,4 @@
-import { CalendarDays } from "lucide-react";
+import { Settings } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import AppLogo from "../../components/common/AppLogo";
@@ -21,13 +21,8 @@ export default function Home() {
   const navigate = useNavigate();
   const location = useLocation();
   const [actionError, setActionError] = useState<string | null>(null);
-  const {
-    dailyWord,
-    error,
-    isLoading,
-    loadNextWord,
-    reloadDailyWord,
-  } = useDailyWord();
+  const { dailyWord, error, isLoading, loadNextWord, reloadDailyWord } =
+    useDailyWord();
   const loadedDate = useRef(getLocalDateKey());
 
   function handleAlreadyKnown() {
@@ -123,26 +118,30 @@ export default function Home() {
   }
 
   return (
-    <div className="mx-auto flex min-h-dvh w-full flex-col bg-white text-navy sm:my-6 sm:min-h-[min(52rem,calc(100dvh-3rem))] sm:overflow-hidden sm:rounded-[1.75rem] sm:border sm:border-border sm:shadow-xl">
-      <header className="flex items-center justify-between px-6 pb-5 pt-6">
+    <div className="app-glass-shell relative isolate mx-auto flex min-h-dvh w-full max-w-[36rem] flex-col overflow-hidden border border-[#d6e3ff] text-navy shadow-[0_12px_40px_rgba(27,65,123,0.08)] sm:my-3 sm:min-h-[calc(100dvh-1.5rem)] sm:rounded-[2.25rem]">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-20 top-16 z-0 h-64 w-64 rounded-full bg-[#dce9ff]/70"
+      />
+      <header className="relative z-10 flex items-center justify-between px-6 pb-4 pt-10 sm:pt-8">
         <AppLogo />
-        {/* <InstallAppButton /> */}
+        {/* TODO: Exibir quando a tela de configurações estiver implementada. */}
+        <button
+          type="button"
+          className="hidden h-11 w-11 items-center justify-center rounded-full text-navy"
+          aria-label="Configurações"
+        >
+          <Settings size={22} aria-hidden="true" />
+        </button>
       </header>
 
       <section
-        aria-labelledby="daily-word-heading"
-        className="flex flex-1 flex-col px-5 pb-6 mt-4"
+        aria-label="Palavra do dia"
+        className="relative z-10 flex flex-1 flex-col px-5 pb-7 pt-7 sm:px-7"
       >
-        <div className="mb-4 flex items-center gap-2 px-1 text-sm font-semibold">
-          <CalendarDays size={18} aria-hidden="true" />
-          <h1 id="daily-word-heading" className="text-blue-900 font-bold">
-            Palavra do dia
-          </h1>
-        </div>
-
         {error && !dailyWord ? (
           <div
-            className="flex min-h-[19.5rem] flex-col items-center justify-center gap-4 rounded-[1.125rem] bg-surface px-6 text-center"
+            className="glass-panel flex min-h-[27rem] flex-col items-center justify-center gap-4 rounded-[2rem] px-6 text-center"
             role="alert"
           >
             <p className="text-sm text-navy">{errorMessage}</p>
@@ -170,25 +169,28 @@ export default function Home() {
             phonetic={dailyWord.phonetic}
             audioUrl={dailyWord.audioUrl}
             partOfSpeech={dailyWord.partOfSpeech}
+            definition={dailyWord.definition}
             translatedDefinition={dailyWord.definitionTranslation ?? ""}
           />
         ) : null}
 
-        <div className="mt-4 grid grid-cols-2 gap-3">
+        <div className="mt-5 grid grid-cols-2 gap-3 sm:gap-4">
           <Button
             variant="outline"
-            className="min-h-[3.125rem] rounded-2xl text-sm"
-            onClick={handleAlreadyKnown}
+            className="glass-control min-h-[4.5rem] rounded-[1.4rem] border-2 text-base hover:bg-white"
             disabled={isLoading || !dailyWord}
+            onClick={handleAlreadyKnown}
           >
             Já sabia
           </Button>
           <Button
-            className="min-h-[3.125rem] rounded-2xl text-sm"
+            className="min-h-[4.5rem] rounded-[1.4rem] text-base"
             disabled={isLoading || !dailyWord}
             onClick={() => {
               if (dailyWord) {
-                navigate(`/words/${encodeURIComponent(dailyWord.word)}`);
+                navigate(`/words/${encodeURIComponent(dailyWord.word)}`, {
+                  state: { dailyWord },
+                });
               }
             }}
           >

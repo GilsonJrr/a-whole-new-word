@@ -5,6 +5,7 @@ import java.util.List;
 
 public record WordResponse(
         String word,
+        String language,
         String phonetic,
         String type,
         DefinitionResponse definition,

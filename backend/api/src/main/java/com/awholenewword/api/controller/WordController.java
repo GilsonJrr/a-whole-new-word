@@ -21,7 +21,7 @@ public class WordController {
         return wordService.findByWord(word);
     }
 
-    @GetMapping("/todaysWord")
+    @GetMapping("/")
     public WordResponse findRandomWord() {
         return wordService.findRandomWord();
     }

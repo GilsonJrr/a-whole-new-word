@@ -1,3 +1,4 @@
+import { Bookmark, CalendarDays } from "lucide-react";
 import PronunciationButton from "../common/PronunciationButton";
 
 interface WordCardProps {
@@ -5,6 +6,7 @@ interface WordCardProps {
   phonetic: string;
   audioUrl?: string | null;
   partOfSpeech: string;
+  definition: string;
   translatedDefinition?: string;
   isTranslatingDefinition?: boolean;
   definitionTranslationError?: boolean;
@@ -15,38 +17,50 @@ export default function WordCard({
   phonetic,
   audioUrl,
   partOfSpeech,
+  definition,
   translatedDefinition,
 }: WordCardProps) {
   return (
-    <article className="relative flex h-4/5 flex-col items-center justify-center rounded-[1.125rem] bg-gradient-to-br from-surface to-[#edf3fc] px-6 py-10 text-center">
-      <h2 className="text-[2.75rem] font-black leading-tight tracking-[-0.04em] text-blue-900 sm:text-5xl mt-10">
-        {word}
-      </h2>
+    <article className="glass-panel flex min-h-[27rem] flex-col rounded-[2rem] px-6 py-7 sm:px-8 sm:py-8">
+      <header className="flex items-center gap-3 text-navy">
+        <CalendarDays
+          size={25}
+          className="shrink-0 text-accent"
+          aria-hidden="true"
+        />
+        <h1 id="daily-word-heading" className="text-lg font-extrabold">
+          Palavra do dia
+        </h1>
+        <Bookmark size={25} className="ml-auto shrink-0" aria-hidden="true" />
+      </header>
 
-      <div className="mt-2 flex items-center gap-2 text-accent">
-        <span className="text-base text-blue-500 font-medium">
-          {phonetic || word}
+      <div className="flex flex-1 flex-col justify-center pb-2 pt-5">
+        <h2 className="break-words text-[clamp(2.65rem,11vw,3.5rem)] font-extrabold leading-[1.05] tracking-[-0.045em] text-blue-900">
+          {word}
+        </h2>
+
+        <div className="mt-4 flex items-center gap-2 text-accent">
+          <span className="text-xl font-medium text-blue-700">
+            {phonetic || word}
+          </span>
+          <PronunciationButton
+            variant="icon"
+            audioUrl={audioUrl}
+            word={word}
+            className="h-10 w-10 rounded-full p-0 text-navy"
+            iconSize={23}
+          />
+        </div>
+
+        <span className="mt-4 w-fit rounded-full bg-[#dfebff] px-4 py-1.5 text-sm font-bold leading-tight text-accent">
+          {partOfSpeech}
         </span>
-        <PronunciationButton
-          variant="icon"
-          audioUrl={audioUrl}
-          word={word}
-          className="h-9 w-auto gap-1 rounded-full px-2 py-0 text-xs text-blue-900"
-          iconSize={19}
-          showLabel
-        ></PronunciationButton>
-      </div>
 
-      <span className="mt-4 rounded-xl bg-[#dfe9f7] px-4 py-1 text-sm leading-tight text-blue-800 font-semibold">
-        {partOfSpeech}
-      </span>
-
-      <div className="mt-5 mb-10 max-w-[17rem] px-5">
-        {translatedDefinition && (
-          <p className="text-base font-semibold leading-snug text-blue-800">
+        <div className="mt-5 space-y-2">
+          <p className="text-lg font-medium leading-snug text-blue-900">
             {translatedDefinition}
           </p>
-        )}
+        </div>
       </div>
     </article>
   );

@@ -17,6 +17,9 @@ public class Word {
     @Column(nullable = false, unique = true, length = 100)
     private String word;
 
+    @Column(nullable = false, length = 10)
+    private String language;
+
     @Column(length = 100)
     private String phonetic;
 
@@ -50,6 +53,10 @@ public class Word {
         return word;
     }
 
+    public String getLanguage() {
+        return language;
+    }
+
     public String getPhonetic() {
         return phonetic;
     }
@@ -74,6 +81,10 @@ public class Word {
 
     public void setWord(String word) {
         this.word = word;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
     public void setPhonetic(String phonetic) {

@@ -29,6 +29,7 @@ public class WordMapper {
 
         return new WordResponse(
                 word.getWord(),
+                word.getLanguage(),
                 word.getPhonetic(),
                 word.getType(),
                 definition,

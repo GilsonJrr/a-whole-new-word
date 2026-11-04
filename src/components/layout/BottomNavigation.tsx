@@ -1,8 +1,8 @@
-import { BarChart3, BookOpen } from "lucide-react";
+import { BarChart3, House } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 const links = [
-  { to: "/", label: "Palavra do dia", Icon: BookOpen },
+  { to: "/", label: "Palavra do dia", Icon: House },
   { to: "/statistics", label: "Estatísticas", Icon: BarChart3 },
 ] as const;
 
@@ -10,7 +10,7 @@ export default function BottomNavigation() {
   return (
     <nav
       aria-label="Navegação principal"
-      className="grid grid-cols-2 border-t border-border bg-white px-2 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-2"
+      className="glass-nav relative z-10 mt-auto grid grid-cols-2 rounded-t-[2rem] px-2 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-2"
     >
       {links.map(({ to, label, Icon }) => (
         <NavLink
@@ -18,12 +18,12 @@ export default function BottomNavigation() {
           to={to}
           end={to === "/"}
           className={({ isActive }) =>
-            `flex min-h-14 flex-col items-center justify-center gap-1 text-[0.625rem] transition-colors ${
-              isActive ? "font-semibold text-navy" : "text-muted"
+            `flex min-h-[4.25rem] flex-col items-center justify-center gap-1 text-xs transition-colors ${
+              isActive ? "font-semibold text-accent" : "text-muted"
             }`
           }
         >
-          <Icon size={21} strokeWidth={2.2} aria-hidden="true" />
+          <Icon size={24} strokeWidth={2.2} aria-hidden="true" />
           <span>{label}</span>
         </NavLink>
       ))}

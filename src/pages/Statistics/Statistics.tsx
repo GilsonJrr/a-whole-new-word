@@ -35,7 +35,7 @@ export default function Statistics() {
   }, []);
 
   return (
-    <div className="mx-auto flex h-dvh w-full max-w-[27rem] flex-col overflow-hidden bg-white text-navy sm:my-6 sm:h-[min(52rem,calc(100dvh-3rem))] sm:rounded-[1.75rem] sm:border sm:border-border sm:shadow-xl">
+    <div className="app-glass-shell mx-auto flex h-dvh w-full max-w-[27rem] flex-col overflow-hidden text-navy sm:my-6 sm:h-[min(52rem,calc(100dvh-3rem))] sm:rounded-[1.75rem] sm:border sm:border-border sm:shadow-xl">
       <header className="flex items-center justify-between px-6 pb-5 pt-6">
         <AppLogo />
         {/* <Button
@@ -54,7 +54,7 @@ export default function Statistics() {
 
         {error ? (
           <p
-            className="rounded-2xl bg-surface px-5 py-4 text-sm text-red-700"
+            className="glass-panel rounded-2xl px-5 py-4 text-sm text-red-700"
             role="alert"
           >
             {error}
@@ -63,7 +63,7 @@ export default function Statistics() {
           <>
             <section
               aria-label="Resumo do aprendizado"
-              className="grid shrink-0 grid-cols-2 divide-x divide-border rounded-[1.5rem] bg-gradient-to-br from-surface to-[#edf3fc] px-3 py-6"
+              className="glass-panel grid shrink-0 grid-cols-2 divide-x divide-border rounded-[1.5rem] px-3 py-6"
             >
               <div className="flex flex-col items-center px-2 text-center">
                 <span className="text-4xl font-extrabold text-blue-900">
@@ -105,7 +105,7 @@ export default function Statistics() {
                       <li key={`${entry.word.word}-${entry.date}`}>
                         <button
                           type="button"
-                          className="flex w-full items-center justify-between rounded-2xl px-4 py-4 text-left transition-colors hover:bg-surface focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+                          className="glass-surface flex w-full items-center justify-between rounded-2xl px-4 py-4 text-left transition-colors hover:brightness-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
                           onClick={() =>
                             navigate(
                               `/words/${encodeURIComponent(entry.word.word)}`,
@@ -139,7 +139,7 @@ export default function Statistics() {
                   })}
                 </ul>
               ) : (
-                <p className="rounded-2xl bg-surface px-5 py-6 text-center text-sm text-muted">
+                <p className="glass-panel rounded-2xl px-5 py-6 text-center text-sm text-muted">
                   Seu histórico de palavras aparecerá aqui.
                 </p>
               )}

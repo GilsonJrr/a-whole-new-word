@@ -1,7 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import { getWordByName } from '../services/api/wordsApi';
 
-export default function useWordDetails(word: string | undefined) {
+export default function useWordDetails(
+  word: string | undefined,
+  enabled = true,
+) {
   return useQuery({
     queryKey: ['words', 'details', word],
     queryFn: ({ signal }) => {
@@ -11,8 +14,9 @@ export default function useWordDetails(word: string | undefined) {
 
       return getWordByName(word, signal);
     },
-    enabled: Boolean(word),
-    staleTime: 5 * 60 * 1000,
+    enabled: Boolean(word) && enabled,
+    staleTime: 0,
+    refetchOnMount: 'always',
     retry: 1,
   });
 }

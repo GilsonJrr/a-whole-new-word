@@ -36,7 +36,7 @@ export default function PronunciationButton({
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(word);
     utterance.lang = "en-US";
-    utterance.rate = 0.9;
+    utterance.rate = 0.4;
     utterance.onerror = (event) => {
       if (event.error !== "canceled" && event.error !== "interrupted") {
         setPlaybackError(`Não foi possível reproduzir o áudio de ${word}.`);
@@ -52,6 +52,7 @@ export default function PronunciationButton({
     if (audioUrl) {
       try {
         const audio = new Audio(new URL(audioUrl, window.location.href).href);
+        audio.playbackRate = 0.75;
         await audio.play();
         return;
       } catch {
